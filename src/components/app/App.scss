@@ -1,0 +1,45 @@
+@import "../../index.scss";
+
+.App {
+	@include flex;
+	flex-direction: column;
+	min-height: 100vh;
+	opacity: 0;
+	transition: all 1s ease;
+}
+
+.App.active {
+	opacity: 1;
+}
+
+.body-fixed {
+	position: fixed;
+	width: 100%;
+}
+
+.link {
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 16px 32px;
+	background: $green;
+	border-radius: 4px;
+	font-family: "ManropeBold", sans-serif;
+	line-height: 24px;
+	text-transform: uppercase;
+	color: $white;
+}
+
+.link-seller {
+	font-family: "ManropeBold", sans-serif;
+	line-height: 24px;
+	text-transform: uppercase;
+	color: $green;
+	background: rgba(70, 137, 102, 0.06);
+	border-radius: 4px;
+	padding: 16px 32px;
+	white-space: nowrap;
+	@media (max-width: 768px) {
+		display: none;
+	}
+}

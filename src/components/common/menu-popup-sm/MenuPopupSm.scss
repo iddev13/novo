@@ -1,0 +1,98 @@
+@import "../../../index.scss";
+
+.menu-popup-sm {
+	display: inline-block;
+	font-family: "ManropeSemiBold", sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+	position: relative;
+	color: #252525;
+	text-align: center;
+	cursor: pointer;
+	padding: 5px;
+	margin: 0 0 0 10px;
+	text-transform: capitalize;
+	user-select: none;
+	&:hover {
+		background: #8b959e17;
+	}
+	&:hover &__list-wrapper {
+		opacity: 1;
+		visibility: visible;
+	}
+	&__selected {
+		@include flex;
+		align-items: center;
+		justify-content: space-between;
+		min-width: 30px;
+		height: 24px;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	&__selected-name {
+		flex: 0 1 auto;
+		text-transform: capitalize;
+	}
+	&__arrow {
+		flex: 0 0 20px;
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		position: relative;
+		transition: all 0.3s ease;
+		&::before,
+		&::after {
+			content: "";
+			display: block;
+			width: 7px;
+			height: 2px;
+			background: #252525;
+			border-radius: 2px;
+			position: absolute;
+			top: 50%;
+			z-index: 1;
+		}
+
+		&::before {
+			left: 5px;
+			transform: rotate(45deg);
+		}
+		&::after {
+			left: 9px;
+			transform: rotate(-45deg);
+		}
+	}
+	&__list-wrapper {
+		position: absolute;
+		left: 0;
+		top: 30px;
+		min-width: 100%;
+		height: auto;
+		padding: 35px 0px 0px 0px;
+		margin-top: -20px;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.2s ease;
+	}
+	&__list {
+		padding: 10px;
+		box-shadow: 0px 10px 50px rgba(139, 149, 158, 0.2);
+		border-radius: 8px;
+		background-color: $white;
+	}
+	& li {
+		line-height: 1.4;
+		white-space: nowrap;
+		margin: 0px 0px 10px 0px;
+		transition: all 0.1s ease;
+		text-align: left;
+		&:last-child {
+			margin: 0px 0px 0px 0px;
+		}
+		&:hover {
+			@media (min-width: 1024px) {
+				color: $green;
+			}
+		}
+	}
+}

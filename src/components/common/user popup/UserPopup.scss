@@ -1,0 +1,104 @@
+@import "../../../index.scss";
+
+.menu-popup {
+	@include center;
+	width: 135px;
+	height: 40px;
+	font-family: "ManropeSemiBold", sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+	position: relative;
+	color: $green;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	@media (max-width: 768px) {
+		width: 24px;
+	}
+	&:hover &__list {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	& > svg {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 24px;
+		height: 24px;
+		fill: #000;
+	}
+	&__list {
+		position: absolute;
+		width: 233px;
+		min-height: 100px;
+		height: auto;
+		left: -45px;
+		top: 45px;
+		box-shadow: 0px 10px 50px rgba(139, 149, 158, 0.2);
+		border-radius: 8px;
+		background-color: $white;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.2s ease;
+		@media (max-width: 768px) {
+			left: -200px;
+		}
+		&::before {
+			content: "";
+			display: inline-block;
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 15px 8px 15px;
+			border-color: transparent transparent #fff transparent;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translate(-50%, -100%);
+			@media (max-width: 768px) {
+				left: 92%;
+			}
+		}
+	}
+	& .menu-popup__active {
+		& a {
+			display: inline-block;
+			width: 100%;
+			background: #8b959e17;
+			padding: 10px 0;
+			font-family: "ManropeMedium", sans-serif;
+			line-height: 140%;
+			text-align: center;
+			color: #252525;
+			@media (min-width: 1024px) {
+				&:hover {
+					color: $green;
+				}
+			}
+		}
+	}
+}
+
+.menu-popup__link {
+	display: block;
+	padding: 17px 0;
+	font-family: "ManropeMedium", sans-serif;
+	font-size: 14px;
+	line-height: 140%;
+	text-align: center;
+	color: #8b959e;
+	width: inherit;
+	height: inherit;
+	&:hover {
+		@media (min-width: 1024px) {
+			color: $green;
+		}
+	}
+	& span {
+		color: $green;
+		font-size: 12px;
+		margin-left: 5px;
+	}
+}

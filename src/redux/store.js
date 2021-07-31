@@ -1,0 +1,23 @@
+import { combineReducers, createStore, applyMiddleware } from "redux";
+import { reducer as formReducer } from 'redux-form'
+import thunkMiddleware from 'redux-thunk';
+import headerNavReducer from "./reducers/headerNav-reducer";
+import novodbReducer from "./reducers/novodb";
+import profileReducer from "./reducers/profile-reducer";
+import selectHelper from "./reducers/select-helper";
+
+
+let reducers = combineReducers({
+	form: formReducer,
+	novodb: novodbReducer,
+	selectHelper: selectHelper,
+	headerNav: headerNavReducer,
+	profile: profileReducer,
+});
+
+
+let store = createStore(reducers, applyMiddleware(thunkMiddleware));
+
+export default store;
+
+window.store = store;

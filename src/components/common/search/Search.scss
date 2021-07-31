@@ -1,0 +1,34 @@
+@import "../../../index.scss";
+
+.search-btn {
+	@include center;
+	background-color: transparent;
+	text-transform: capitalize;
+	font-family: "ManropeSemiBold", sans-serif;
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 24px;
+	color: #252525;
+	margin-left: 15px;
+	user-select: none;
+	& svg {
+		width: 17px;
+		height: 17px;
+	}
+}
+
+.search-send-btn {
+	width: 17px;
+	height: 17px;
+	display: inline-block;
+	position: relative;
+	margin: 0px 10px 0px 0px;
+	background: transparent;
+	& svg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+}

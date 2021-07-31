@@ -1,0 +1,106 @@
+$container: 1200px;
+$white: #fff;
+$white01: rgba(255, 255, 255, 0.1);
+$white03: rgba(255, 255, 255, 0.3);
+$white04: rgba(255, 255, 255, 0.4);
+$white07: rgba(255, 255, 255, 0.7);
+$black: #222;
+$black07: rgba(34, 34, 34, 0.7);
+$black05: rgba(34, 34, 34, 0.5);
+$black02: rgba(34, 34, 34, 0.2);
+$black01: rgba(34, 34, 34, 0.1);
+$gray: rgba(235, 232, 232, 0.774);
+$red: #f9004d;
+$green: #009661;
+$bg: #e5e5e5;
+$containerFluid: 3500px;
+
+// ADAPTIV PADDING MIXIN =======================================
+$maxWidth: 1920;
+$maxWidthContainer: 1200;
+
+@mixin flex() {
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+}
+
+@mixin center() {
+    display: flex;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin adaptiv-value($property, $startSize, $minSize, $type) {
+    $addSize: $startSize - $minSize;
+    @if $type==1 {
+        //Только если меньше контейнера
+        #{$property}: $startSize + px;
+        @media (max-width: #{$maxWidthContainer + px}) {
+            #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+        }
+    } @else if $type==2 {
+        //Только если больше контейнера
+        #{$property}: $startSize + px;
+        @media (min-width: #{$maxWidthContainer + px}) {
+            #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+        }
+    } @else {
+        //Всегда
+        #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+    }
+}
+
+.containerFluid {
+    width: 100%;
+    max-width: containerFluid;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.wrapper {
+    @include flex;
+}
+
+// SCROLL==================
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+$orange: #ffb402;
+$orange2: #ffb302b9;
+
+::-webkit-scrollbar-track {
+    background: $black07;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 8px;
+    border: 2px solid $white07;
+    transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: $red;
+}
+
+// @KEYFRAMES =========================
+@keyframes show__header {
+    0% {
+        opacity: 0;
+        top: -200px;
+    }
+
+    100% {
+        opacity: 1;
+        top: 0;
+    }
+}

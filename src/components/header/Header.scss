@@ -1,0 +1,32 @@
+@import "../../index.scss";
+
+.header {
+	background-color: $white;
+	border-bottom: 1px solid #000;
+	height: 96px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 3;
+	&__inner {
+		@include flex;
+		align-items: center;
+		height: 96px;
+		padding: 0px 0px 0px 10px;
+	}
+}
+
+.header__fixed {
+	position: fixed;
+	width: 100%;
+	min-height: 50px;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: #222;
+	animation: show__header 1s;
+	@media (max-width: 768px) {
+		height: 50px;
+	}
+}

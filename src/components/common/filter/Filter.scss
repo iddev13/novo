@@ -1,0 +1,75 @@
+@import "../../../index.scss";
+
+.filter {
+	&__inner {
+		@include flex;
+	}
+	&__wrapper {
+		flex: 1 1 auto;
+		margin-right: 20px;
+	}
+	&__header {
+		background: #fff;
+		border-radius: 8px;
+		width: 100%;
+		padding: 15px 16px;
+		margin: 0px 0px 20px 0px;
+		& button {
+			height: 71px;
+			max-width: 142px;
+			width: 100%;
+			font-family: "ManropeMedium", sans-serif;
+			font-size: 14px;
+			line-height: 130%;
+			color: #252525;
+			background-color: transparent;
+			border-radius: 4px;
+			text-transform: capitalize;
+			transition: all 0.3s ease;
+			@media (min-width: 1024px) {
+				&:hover {
+					background-color: $green;
+					color: $white;
+				}
+			}
+		}
+		& button.active {
+			background: #009661;
+			font-family: "ManropeBold", sans-serif;
+			color: #ffffff;
+		}
+	}
+	&__header-buttons {
+		@include flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	&__header-button {
+	}
+	&__body {
+		background: #ffffff;
+		border-radius: 8px;
+		margin: 0px 0px 32px 0px;
+		padding: 24px 32px 12px 32px;
+	}
+	&__body-row {
+		@include flex;
+		flex-wrap: wrap;
+		// justify-content: space-between;
+		justify-content: flex-start;
+		background-color: pink;
+	}
+	&__body-item {
+		flex: 0 0 48%;
+		margin: 0px 0px 20px 0px;
+		padding: 15px 10px;
+	}
+	&__footer {
+		text-align: right;
+	}
+}
+
+.filter-offer {
+	flex: 0 0 392px;
+	background: wrapper;
+}

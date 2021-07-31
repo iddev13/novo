@@ -1,0 +1,37 @@
+@import "../../../../index.scss";
+
+.day-offer {
+	@include center;
+	position: absolute;
+	width: 170px;
+	height: 40px;
+	right: -19px;
+	top: 40px;
+	z-index: 1000;
+	background: #eb5757;
+	border-radius: 8px 0px 0px 8px;
+	font-family: "ManropeSemiBold", sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+	text-align: center;
+	color: #ffffff;
+	&::after {
+		content: "";
+		display: inline-block;
+		width: 0;
+		height: 0;
+		border-style: solid;
+		border-width: 19px 19px 0 0;
+		border-color: #8a2323 transparent transparent transparent;
+		line-height: 0;
+		_border-color: #8a2323 #000000 #000000 #000000;
+		_filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+		position: absolute;
+		right: 0;
+		bottom: -19px;
+		z-index: 1;
+	}
+	& span {
+		color: inherit;
+	}
+}
