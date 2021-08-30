@@ -13,6 +13,18 @@ export const Input = ({ input, meta, ...props }) => {
 	)
 }
 
+export const ProfileInput = ({ input, meta, ...props }) => {
+	// debugger
+	return (
+		<div className={`formControl ${meta.error && meta.touched ? "error" : ''}`}>
+			<div className="profileFormControl__item">
+				<input {...input} {...props} />
+			</div>
+			{meta.error && meta.touched && <span>{meta.error}</span>}
+		</div>
+	)
+}
+
 export const Textarea = ({ input, meta, ...props }) => {
 	return (
 		<div className={`formControl ${meta.error && meta.touched ? "error" : ''}`}>

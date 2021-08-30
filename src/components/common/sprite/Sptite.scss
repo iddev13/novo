@@ -1,1 +1,24 @@
 @import "../../../index.scss";
+
+.slider-arrow {
+	width: 13px;
+	height: 20px;
+	stroke: #009661;
+	fill: none;
+}
+
+.footer-social-icon {
+	width: 34px;
+	height: 34px;
+	fill: #fff;
+	border-radius: 50%;
+	border: 2px solid transparent;
+	transition: all 0.1s ease;
+	@media (min-width: 1024px) {
+		&:hover {
+			fill: $green;
+			background: #fff;
+			border-color: $green;
+		}
+	}
+}

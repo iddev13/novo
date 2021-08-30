@@ -29,6 +29,14 @@
 		height: 24px;
 		fill: #000;
 	}
+	&__user-link {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: inherit;
+		height: inherit;
+		color: inherit;
+	}
 	&__list {
 		position: absolute;
 		width: 233px;

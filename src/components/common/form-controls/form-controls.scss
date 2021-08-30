@@ -21,41 +21,58 @@
 	border-radius: 5px;
 }
 
+.profileFormControl__item {
+	width: 100%;
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 24px 24px 24px 54px;
+	& input {
+		width: inherit;
+		font-family: "ManropeRegular", sans-serif;
+		font-size: 14px;
+		line-height: 24px;
+		color: #8b959e;
+	}
+}
+
 .formControl__item {
 	position: relative;
-}
-
-input,
-textarea {
-	background-color: transparent;
-	border-bottom: 2px solid $white04;
-	font-size: 19px;
-	padding: 10px 5px;
+	max-width: 418px;
 	width: 100%;
-	color: $white07;
-	letter-spacing: 1px;
 }
 
-input {
+.formControl__item input,
+.formControl__item textarea {
+	background-color: transparent;
+	border: 2px solid #e9e9e9;
+	width: inherit;
+	font-family: "ManropeMedium", sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+	color: #252525;
+	padding: 16px 20px;
+}
+
+.formControl__item input {
 	display: block;
 	height: 50px;
 	position: relative;
 }
 
-textarea {
+.formControl__itemtextarea {
 	height: 100px;
 }
 
-input:focus,
+.formControl__iteminput:focus,
 textarea:focus {
 	border-bottom: 1px solid greenyellow;
 }
 
-textarea {
+.formControl__item textarea {
 	resize: vertical;
 }
 
-.form-btn {
+.formControl__item .form-btn {
 	padding: 10px 12px;
 	text-transform: uppercase;
 	letter-spacing: 1px;

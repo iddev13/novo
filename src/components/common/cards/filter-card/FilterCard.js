@@ -3,7 +3,7 @@ import './FilterCard.scss';
 import car from '../../../../image/cars/opel.jpg';
 import DayOffer from './DayOffer';
 
-const FilterCard = () => {
+const FilterCard = ({ card_description }) => {
 	return (
 		<section className="filter-card">
 			<div className="filter-card__image">
@@ -14,7 +14,10 @@ const FilterCard = () => {
 			<h2 className="filter-card__title">
 				<a href="/">Opel COMBO Airco Elct Ramen Stuurbediening  Garage van Nierop NetherlandsGarage van Nierop Netherlands</a>
 			</h2>
-			<span className="filter-card__description">Закрытые грузопассажирские автомобили</span>
+			{card_description
+				? <span className="filter-card__description">Закрытые грузопассажирские автомобили</span>
+				: null}
+
 			<div className="filter-card__other-info">
 				<div className="filter-card__location">
 					<div className="filter-card__location-icon">
@@ -27,7 +30,10 @@ const FilterCard = () => {
 					<span className="filter-card__price-currency">€</span>
 				</div>
 			</div>
-			<DayOffer />
+			{card_description
+			?<DayOffer />
+			: null
+		}
 		</section>
 	)
 }

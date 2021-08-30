@@ -2,10 +2,9 @@ import { useState } from 'react';
 import './Select.scss';
 
 
-const Select = ({ item, setItem, selected, setSelected }) => {
-	// debugger
+const Select = ({ item, selected, setSelected, name, additionalCharacter }) => {
 
-	const placeholder = selected ?? 'Выберите категорию'
+	const placeholder = localStorage.getItem(name) ?? selected;
 	const [isActive, setIsActive] = useState(false);
 
 	let options = item.map((elem, index) => {
@@ -14,14 +13,16 @@ const Select = ({ item, setItem, selected, setSelected }) => {
 			onClick={(event) => {
 				setSelected(elem)
 				setIsActive(false)
+				localStorage.setItem(name, elem);
 			}}
-			key={index.toString()}>{elem}</div>
+			key={index.toString()}>{`${elem}`}</div>
 	})
+
 
 	return (
 		<div className={`select ${isActive ? '' : 'active'} `}>
 			<div className="select__btn" onClick={() => { setIsActive(!isActive) }}>
-				{placeholder}
+				{`${placeholder} ${additionalCharacter === undefined ? '' : additionalCharacter}`}
 				<span className="select__arrow"></span>
 			</div>
 			<div
@@ -30,19 +31,6 @@ const Select = ({ item, setItem, selected, setSelected }) => {
 				{isActive ? options : ''}
 			</div >
 		</div >
-
-
-
-
-		// <div className={`select ${isActive ? '' : 'active'} `}>
-		// 	<div className="select__btn" onClick={() => { setIsActive(!isActive) }}>
-		// 		{selected}
-		// 		<span className="select__arrow"></span>
-		// 	</div>
-		// 	<div className="select__content">
-		// 		{isActive ? options : ''}
-		// 	</div >
-		// </div >
 	)
 }
 

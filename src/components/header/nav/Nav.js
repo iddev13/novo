@@ -2,16 +2,13 @@ import UserPopup from '../../common/user popup/UserPopup';
 import MenuPopupSm from '../../common/menu-popup-sm/MenuPopupSm';
 import './Nav.scss';
 import Search from '../../common/search/Search';
+import { NavLink } from 'react-router-dom';
 
 const Nav = (props) => {
 
 	return (
 		<nav className="header-nav">
 			<div className="header-nav__left nav-left">
-				{/* <Select
-					selected={selected}
-					setSelected={setSelected}
-					language={props.language} /> */}
 				<MenuPopupSm
 					items={props.language}
 					setActiveItems={props.setActiveLanguage}
@@ -26,7 +23,7 @@ const Nav = (props) => {
 				<ul className="nav-right__list">
 					<li><UserPopup /></li>
 					<li>
-						<a href="/" className="link-seller">Стать продавцом</a>
+						<NavLink to="/seller" className="link-seller">Стать продавцом</NavLink>
 					</li>
 				</ul>
 			</div>

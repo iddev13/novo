@@ -1,0 +1,117 @@
+@import "../../index.scss";
+
+.recently-viewed {
+	padding: 121px 0;
+	overflow: hidden;
+	@media (max-width: 480px) {
+		padding: 100px 0;
+	}
+	&__inner {
+		@include flex;
+		justify-content: space-between;
+		position: relative;
+		@media (max-width: 1000px) {
+			display: block;
+		}
+	}
+	&__title {
+		flex: 0 0 368px;
+		width: 368px;
+		font-family: "ManropeRegular", sans-serif;
+		font-size: 45px;
+		line-height: 130%;
+		color: #252525;
+		margin: 0px 45px 0px 0px;
+		@media (max-width: 1000px) {
+			font-size: 35px;
+			margin: 0px 0px 38px 0px;
+		}
+		@media (max-width: 480px) {
+			font-size: 25px;
+			width: 300px;
+			margin: 0px 0px 30px 0px;
+		}
+	}
+	.filter-otherCard {
+		transform: translate(0, 0);
+		box-shadow: none;
+	}
+	&__button {
+		position: absolute;
+		bottom: 0;
+		width: 48px;
+		height: 48px;
+		color: #009661;
+		border-radius: 8px;
+		background-color: #0096611c;
+		@include center;
+		transition: all 0.3s ease;
+		& > svg {
+			transition: all 0.3s ease;
+		}
+		@media (min-width: 1024px) {
+			&:hover {
+				background-color: $green;
+				& > svg {
+					stroke: #fff;
+				}
+			}
+		}
+		@media (max-width: 1000px) {
+			bottom: -75px;
+		}
+		@media (max-width: 480px) {
+			display: none;
+		}
+	}
+	.swiper-next {
+		left: 64px;
+		transform: rotate(180deg);
+	}
+	.swiper-prev {
+		left: 0;
+	}
+}
+
+.recently-viewed-slider {
+	flex: 0 1 1200px;
+	width: 1216px;
+	padding: 0;
+	position: relative;
+	@media (max-width: 1000px) {
+		width: auto;
+	}
+	&::after {
+		content: "";
+		display: block;
+		width: 300px;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		z-index: 1;
+		box-shadow: inset -150px 0px 150px -100px#fff;
+		@media (max-width: 1000px) {
+			display: none;
+		}
+	}
+	.swiper-slide {
+	}
+
+	.swiper-button-prev {
+		::after {
+			font-family: swiper-icons;
+			font-size: 10px;
+			text-transform: none !important;
+			letter-spacing: 0;
+			text-transform: none;
+			font-variant: initial;
+			line-height: 1;
+		}
+	}
+	.swiper-button-next {
+	}
+}
+:root {
+	// --swiper-theme-color: green;
+}

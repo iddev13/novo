@@ -1,0 +1,123 @@
+@import "../../index.scss";
+
+.footer {
+	width: 100%;
+	min-height: 100px;
+	background-color: #212026;
+	padding: 32px 0;
+	&__inner {
+		@include flex;
+		margin: 0px 0px 66px 0px;
+		@media (max-width: 1000px) {
+			@include adaptiv-value("padding-right", 60, 20, 0);
+			@include adaptiv-value("padding-left", 60, 20, 0);
+		}
+		@media (max-width: 768px) {
+			flex-wrap: wrap;
+		}
+	}
+	&__left {
+		flex: 0 0 40%;
+		@media (max-width: 768px) {
+			flex: 1 1 100%;
+			margin-bottom: 20px;
+		}
+	}
+	&__center {
+		display: flex;
+		flex-direction: column;
+		flex: 0 0 40%;
+		padding-top: 30px;
+		@media (max-width: 768px) {
+			flex: 1 1 50%;
+			padding-top: 0;
+		}
+	}
+	&__social {
+		flex: 1 0 20%;
+		@include flex;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding-top: 30px;
+		@media (max-width: 768px) {
+			flex: 0 0 30%;
+			padding-top: 0;
+		}
+	}
+	&__logo {
+		width: 168px;
+		height: 72px;
+		position: relative;
+		user-select: none;
+		& img,
+		source {
+			display: block;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 1;
+			object-fit: contain;
+			font-family: "object-fit: contain;";
+		}
+		& a {
+			user-select: inherit;
+		}
+	}
+	&__copyright {
+		display: grid;
+		border: 2px solid #ffffff31;
+		padding: 16px 0;
+		& span {
+			display: inline-block;
+			font-size: 14px;
+			line-height: 24px;
+			text-align: center;
+			color: #ffffff;
+			opacity: 0.6;
+		}
+	}
+}
+
+.centerFooter {
+	user-select: none;
+	&__title {
+		max-width: 321px;
+		width: 100%;
+		font-family: "ManropeMedium", sans-serif;
+		font-size: 14px;
+		line-height: 150%;
+		color: #ffffff;
+		opacity: 0.6;
+		margin: 0px 0px 16px 0px;
+	}
+	&__list {
+		@include flex;
+		font-family: "Bold", sans-serif;
+		font-size: 14px;
+		line-height: 24px;
+		text-transform: uppercase;
+		color: #ffffff;
+		@media (max-width: 1000px) {
+			flex-direction: column;
+		}
+		& > li:not(:last-child) {
+			margin-right: 60px;
+		}
+		& a {
+			color: inherit;
+		}
+	}
+}
+
+.socialFooter {
+	user-select: none;
+	&__list {
+		@include flex;
+		& li:not(:last-child) {
+			margin-right: 12px;
+		}
+	}
+}

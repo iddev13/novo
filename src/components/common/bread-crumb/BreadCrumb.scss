@@ -1,0 +1,52 @@
+@import "../../../index.scss";
+
+.breadCrumb {
+	&__list {
+		@include flex;
+	}
+	&__item {
+		height: 24px;
+		font-family: "ManropeMedium", sans-serif;
+		font-size: 14px;
+		line-height: 24px;
+		color: #8b959e;
+		margin: 0px 20px 0px 0px;
+		position: relative;
+		padding: 0px 20px 0px 0px;
+		&:not(:last-child) {
+			&::before,
+			&::after {
+				content: "";
+				display: block;
+				width: 5px;
+				height: 1px;
+				background: #8b959e;
+				position: absolute;
+				right: 0;
+				z-index: 1;
+			}
+			&::before {
+				top: 45%;
+				transform: rotate(45deg);
+			}
+			&::after {
+				top: 55%;
+				transform: rotate(-45deg);
+			}
+		}
+	}
+	&__link {
+		color: inherit;
+		background-color: transparent;
+		transition: all 0.3s ease;
+		@media (min-width: 1024px) {
+			&:hover {
+				color: $green;
+			}
+		}
+	}
+}
+.disabled {
+	color: #252525;
+	pointer-events: none;
+}

@@ -1,7 +1,7 @@
 @import "../../../index.scss";
 
 .select {
-	width: 360px;
+	width: 100%;
 	height: 56px;
 	margin: 0 auto;
 	position: relative;
@@ -22,6 +22,7 @@
 	align-items: center;
 	justify-content: space-between;
 	text-transform: capitalize;
+	cursor: pointer;
 }
 
 .select .select__content {

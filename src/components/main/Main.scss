@@ -5,5 +5,8 @@
 	height: 100%;
 	flex: 1 1 auto;
 	position: relative;
-	padding-top: 150px;
+	padding-top: 95px;
+	@media (max-width: 768px) {
+		padding-top: 55px;
+	}
 }

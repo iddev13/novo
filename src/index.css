@@ -135,7 +135,7 @@ h6 {
 
 .container {
   width: 100%;
-  max-width: 1380px;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 0 15px;
 }
@@ -171,4 +171,24 @@ code {
 ul,
 ol {
   list-style: none;
+}
+
+/* Слайдер */
+.slick-slider {
+  min-width: 0;
+}
+/* Ограничивающая оболочка */
+.slick-list {
+  overflow: hidden;
+}
+/* Лента слайдов */
+.slick-track {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /*    -webkit-box-align: start;*/
+  /*    -ms-flex-align: start;*/
+  /*    display: block; Для ветикального слайдера*/
+  /*    align-items: flex-start;*/
+  /*align-items: flex-start; для свойства adaptiveHeight: true    */
 }

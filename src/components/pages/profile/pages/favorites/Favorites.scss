@@ -1,0 +1,27 @@
+@import "../../../../../index.scss";
+
+.profileFavorites {
+	padding: 40px 0px 120px 0px;
+	@media (max-width: 768px) {
+		padding: 0px 0px 100px 0px;
+	}
+	&__inner {
+		@include flex;
+		flex-wrap: wrap;
+		margin: 0 -10px;
+	}
+	&__item {
+		flex: 0 1 33.33333%;
+		padding: 0 10px 36px 10px;
+		@media (max-width: 1000px) {
+			flex: 0 1 50%;
+		}
+		@media (max-width: 480px) {
+			flex: 0 1 100%;
+		}
+	}
+	& button {
+		display: block;
+		margin: 0 auto;
+	}
+}

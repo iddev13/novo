@@ -1,0 +1,18 @@
+@import "../../../../index.scss";
+
+.profileSearch {
+	margin: 0px 0px 20px 0px;
+	&__item {
+		position: relative;
+	}
+	& button {
+		position: absolute;
+		top: 50%;
+		left: 27px;
+		z-index: 1;
+		width: 22px;
+		height: 22px;
+		background-color: transparent;
+		transform: translate(0, -50%);
+	}
+}
