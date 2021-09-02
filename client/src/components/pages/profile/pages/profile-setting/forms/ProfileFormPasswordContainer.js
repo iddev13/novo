@@ -1,7 +1,5 @@
 import ProfileFormPasswordRedux from "./ProfileFormPassword";
 
-
-
 const ProfileFormPasswordContainer = (props) => {
 
 

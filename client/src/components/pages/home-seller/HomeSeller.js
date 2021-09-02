@@ -37,20 +37,20 @@ const HomeSeller = () => {
   return (
     <section className="home-seller">
       Home Seller
-      <Select
+      {/* <Select
         defaultValue={options[0]}
         styles={customStyles}
         options={options}
-      />
+      /> */}
 
-      <Select
+      {/* <Select
         defaultValue={[options[1], options[2]]}
         isMulti
         name="colors"
         options={options}
         className="basic-multi-select"
         classNamePrefix="select"
-      />
+      /> */}
 
       {/* <Select
         closeMenuOnSelect={false}

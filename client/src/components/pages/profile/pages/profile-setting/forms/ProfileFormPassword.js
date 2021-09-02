@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 
 const afterSubmit = (result, dispatch) => {
-	dispatch(reset('profileSettingForm'))
+	dispatch(reset('profileFormPassword'))
 }
 
 const useStyles = makeStyles({
@@ -58,6 +58,6 @@ const ProfileFormPassword = ({ labelFor, ...props }) => {
 	)
 }
 
-const ProfileFormPasswordRedux = reduxForm({ form: 'profileSettingForm', onSubmitSuccess: afterSubmit })(ProfileFormPassword)
+const ProfileFormPasswordRedux = reduxForm({ form: 'profileFormPassword', onSubmitSuccess: afterSubmit })(ProfileFormPassword)
 
 export default ProfileFormPasswordRedux;

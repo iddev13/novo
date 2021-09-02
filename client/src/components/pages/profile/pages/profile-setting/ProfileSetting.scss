@@ -1,8 +1,16 @@
 @import "../../../../../index.scss";
 
 .profileSetting {
+	padding: 48px 0px 200px 0px;
 	@media (max-width: 1000px) {
 		margin-top: -8px;
+		padding: 40px 0px 136px 0px;
+	}
+	@media (max-width: 768px) {
+		padding: 40px 0px 120px 0px;
+	}
+	@media (max-width: 480px) {
+		padding: 40px 0px 88px 0px;
 	}
 	&__profileName {
 		font-family: "ManropeMedium", sans-serif;

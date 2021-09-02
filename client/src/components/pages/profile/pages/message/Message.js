@@ -1,10 +1,11 @@
 import './Message.scss';
+import MessageTable from './MessageTable';
 
 const Message = () => {
 	return (
 		<section>
 			<div className="container">
-				Message
+				<MessageTable />
 			</div>
 		</section>
 	)

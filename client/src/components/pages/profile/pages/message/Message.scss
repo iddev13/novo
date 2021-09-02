@@ -1,0 +1,44 @@
+@import "../../../../../index.scss";
+
+.profileMessage {
+	color: #da24247a;
+}
+
+.messagePagination {
+	&__inner {
+		@include flex;
+		align-items: center;
+	}
+	& button {
+		width: 48px;
+		height: 48px;
+		background: #00966123;
+		border-radius: 8px;
+		transition: all 0.2s ease;
+		@media (min-width: 1024px) {
+			&:hover {
+				background: $green;
+				& svg {
+					stroke: #fff;
+				}
+			}
+		}
+	}
+	&__prev {
+	}
+	&__next {
+		& svg {
+			transition: all 0.2s ease;
+			transform: rotate(-180deg);
+		}
+	}
+	&__pages {
+		font-family: "ManropeMedium", sans-serif;
+		font-size: 14px;
+		line-height: 24px;
+		color: #252525;
+		margin: 0 24px;
+		& span {
+		}
+	}
+}
