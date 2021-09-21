@@ -5,9 +5,14 @@ import HeaderContainer from '../header/HeaderContainer';
 import Main from '../main/Main';
 import './App.scss';
 
-function App() {
+function App({ token, login, logout, userId, isAuthenticated }) {
+  // debugger
 
+  // App wrapper animation
   let [active, setActive] = useState(false)
+
+  // auth
+  const isAuth = !!token;
 
   useEffect(() => {
     const appActive = () => {

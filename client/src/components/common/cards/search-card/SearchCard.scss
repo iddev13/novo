@@ -1,0 +1,122 @@
+@import "../../../../index.scss";
+
+.filter-searchCard {
+	padding: 16px;
+	background: #fff;
+	border-radius: 8px;
+	@media (max-width: 1000px) {
+		padding: 12px;
+	}
+	&__image {
+	}
+	&__image-wrapper {
+	}
+	&__body {
+		padding: 12px 0px 0px 0px;
+	}
+	&__suptitle {
+		font-family: "ManropeRegular", sans-serif;
+		font-size: 14px;
+		line-height: 150%;
+		color: #8b959e;
+		margin: 0px 0px 8px 0px;
+	}
+	&__title {
+		font-family: "ManropeMedium", sans-serif;
+		font-size: 20px;
+		line-height: 150%;
+		color: #252525;
+		user-select: none;
+		@media (min-width: 1024px) {
+			&:hover a {
+				color: $green;
+			}
+		}
+		& a {
+			display: inline-block;
+			max-width: 257px;
+			width: 100%;
+			max-height: 60px;
+			height: 100%;
+			color: inherit;
+			overflow: hidden;
+			transition: all 0.1s ease;
+		}
+	}
+	&__badges {
+		@include flex;
+		flex-wrap: wrap;
+		margin: 0px 0px 24px 0px;
+		& li {
+			font-family: "ManropeRegular", sans-serif;
+			font-size: 14px;
+			line-height: 24px;
+			display: flex;
+			align-items: center;
+			background: rgba(139, 149, 158, 0.05);
+			border-radius: 4px;
+			padding: 2px 8px;
+			color: #252525;
+		}
+		& li:not(:last-child) {
+			margin-right: 10px;
+		}
+	}
+	&__other-info {
+		@include flex;
+		justify-content: space-between;
+		align-items: center;
+		border-top: 1px solid #e8e9e8;
+		padding-top: 16px;
+	}
+	&__location {
+		@include flex;
+	}
+	&__location-icon {
+		@include flex;
+		& svg {
+			margin: auto 0;
+			width: 22px;
+			margin: 0px 11.5px 0px 0px;
+			@media (max-width: 480px) {
+				margin: 0px 7.5px 0px 0px;
+			}
+		}
+	}
+	&__location-text {
+		font-family: "ManropeRegular", sans-serif;
+		font-size: 14px;
+		line-height: 150%;
+		color: #252525;
+		height: 42px;
+		max-width: 141px;
+		width: 100%;
+		overflow: hidden;
+		@media (max-width: 768px) {
+			max-width: 120px;
+		}
+		@media (max-width: 480px) {
+			height: auto;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 105px;
+		}
+	}
+	&__price,
+	&__price-currency {
+		font-family: "ManropeMedium", sans-serif;
+		font-size: 24px;
+		line-height: 150%;
+		color: #009661;
+		@media (max-width: 1000px) {
+			font-size: 20px;
+		}
+		@media (max-width: 768px) {
+			font-size: 14px;
+		}
+	}
+	&__price {
+		white-space: nowrap;
+	}
+}

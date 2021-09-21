@@ -4,7 +4,6 @@ import Logo from './logo/Logo';
 import NavContainer from './nav/NavContainer';
 
 const Header = (props) => {
-
 	return (
 		<header className="header">
 			<div className="container">

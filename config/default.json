@@ -1,0 +1,6 @@
+{
+	"port": 5000,
+	"jwtSecret": "novo mern",
+	"mongoUri": "mongodb+srv://adnin-novo:wifi6D1f1@cluster0.viy36.mongodb.net/novoDatabase?retryWrites=true&w=majority",
+	"baseUrl": "http://localhost:5000"
+}

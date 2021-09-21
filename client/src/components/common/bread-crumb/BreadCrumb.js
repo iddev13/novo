@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import './BreadCrumb.scss';
 
 const breadCrumbStyle = {
@@ -23,11 +24,11 @@ const BreadCrumb = (props) => {
 								key={index.toString()}
 								className="breadCrumb__item"
 							>
-								<button
+								<NavLink to="/"
 									className={`breadCrumb__link ${disabled}`}
 									onClick={() => { props.selected(elem) }}>
 									{elem}
-								</button>
+								</NavLink>
 							</li>
 						);
 					})

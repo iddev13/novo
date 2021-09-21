@@ -21,6 +21,9 @@ const useStyles = makeStyles({
 	table: {
 		minWidth: 650,
 	},
+	td: {
+		cursor: 'pointer',
+	},
 	deleteBtn: {
 		background: '#eb575721',
 		borderRadius: '8px',
@@ -95,7 +98,7 @@ function MessageTable() {
 					</TableHead>
 					<TableBody>
 						{rows.map((row) => (
-							<TableRow key={row.fullName}>
+							<TableRow className={classes.td} key={row.fullName}>
 								<TableCell align="right">
 									<FormGroup row>
 										<FormControlLabel

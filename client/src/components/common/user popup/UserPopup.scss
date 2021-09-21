@@ -110,3 +110,23 @@
 		margin-left: 5px;
 	}
 }
+
+.enterLink {
+	padding: 17px 0;
+	font-family: "ManropeBold", sans-serif;
+	font-size: 14px;
+	line-height: 140%;
+	text-align: center;
+	margin: 0px 20px 0px 0px;
+	& a {
+		color: #8b959e;
+		font-size: inherit;
+		transition: all 0.2s ease;
+		padding: 5px 10px;
+		&:hover {
+			@media (min-width: 1024px) {
+				color: $green;
+			}
+		}
+	}
+}

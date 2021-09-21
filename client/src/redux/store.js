@@ -1,6 +1,7 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { reducer as formReducer } from 'redux-form'
 import thunkMiddleware from 'redux-thunk';
+import authReducer from "./reducers/auth-reducer";
 import headerNavReducer from "./reducers/headerNav-reducer";
 import logosReducer from "./reducers/logos-reducer";
 import novodbReducer from "./reducers/novodb";
@@ -10,6 +11,7 @@ import selectHelper from "./reducers/select-helper";
 
 let reducers = combineReducers({
 	form: formReducer,
+	auth: authReducer,
 	novodb: novodbReducer,
 	selectHelper: selectHelper,
 	headerNav: headerNavReducer,

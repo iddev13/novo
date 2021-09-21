@@ -70,26 +70,21 @@ $maxWidthContainer: 1200;
 
 // SCROLL==================
 ::-webkit-scrollbar {
-    width: 15px;
+    width: 4px;
 }
 
-$orange: #ffb402;
-$orange2: #ffb302b9;
-
 ::-webkit-scrollbar-track {
-    background: $black07;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
+    background: #fff;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #444;
-    border-radius: 8px;
-    border: 2px solid $white07;
+    background: #009661;
+    border-radius: 2px;
     transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: $red;
+    background: rgb(53, 161, 10);
 }
 
 // @KEYFRAMES =========================

@@ -5,19 +5,14 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import './ProfileSetting.scss';
 import { Box, Link } from '@material-ui/core';
 import ProfileFormPasswordContainer from './forms/ProfileFormPasswordContainer';
 import ProfileFormEmailContainer from './forms/ProfileFormEmailContainer';
 import ProfileFormInfoContainer from './forms/ProfileFormInfoContainer';
-
-
+import './ProfileSetting.scss';
 
 const useStyles = makeStyles((theme) => ({
-	root: {
-		// width: '100%',
-
-	},
+	root: {},
 	accordion: {
 		marginBottom: '20px'
 	},

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 // Hook
 export function useWindowSize() {
@@ -25,4 +25,40 @@ export function useWindowSize() {
 		return () => window.removeEventListener("resize", handleResize);
 	}, []); // Empty array ensures that effect is only run on mount
 	return windowSize;
+}
+
+export const useHttp = () => {
+	const [loading, setLoading] = useState(false)
+	const [error, setError] = useState(null)
+
+	const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
+		setLoading(true)
+		try {
+			if (body) {
+				body = JSON.stringify(body)
+				headers['Content-Type'] = 'application/json'
+			}
+
+			const response = await fetch(url, { method, body, headers })
+			// debugger
+
+			const data = await response.json()
+
+			if (!response.ok) {
+				throw new Error(data.message || 'Что-то пошло не так')
+			}
+
+			setLoading(false)
+
+			return data
+		} catch (e) {
+			setLoading(false)
+			setError(e.message)
+			throw e
+		}
+	}, [])
+
+	const clearError = useCallback(() => setError(null), [])
+
+	return { loading, request, error, clearError }
 }

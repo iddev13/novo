@@ -3,6 +3,7 @@ import FilterCard from '../cards/filter-card/FilterCard';
 import Select from '../selects/Select';
 import ReactSelect from 'react-select';
 import './Filter.scss';
+import { NavLink } from 'react-router-dom';
 
 const Filter = (props) => {
 	// debugger
@@ -125,7 +126,7 @@ const Filter = (props) => {
 							</div>
 						</div>
 						<footer className="filter__footer footer-filter">
-							<button className="link footer-filter__link">{`поиск ${props.cars.length}(результатов)`}</button>
+							<NavLink to="/search-result" className="link footer-filter__link">{`поиск ${props.cars.length}(результатов)`}</NavLink>
 						</footer>
 					</article>
 					<aside className="filter-day-offer filter-offer">

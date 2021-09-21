@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './form-controls.scss';
 
 export const Input = ({ input, meta, ...props }) => {
@@ -25,10 +25,24 @@ export const ProfileInput = ({ input, meta, ...props }) => {
 	)
 }
 
-export const Textarea = ({ input, meta, ...props }) => {
+export const InputFile = ({ input, meta, ...props }) => {
+	// debugger
+	delete input.value
+
 	return (
 		<div className={`formControl ${meta.error && meta.touched ? "error" : ''}`}>
 			<div className="formControl__item">
+				<input type="file" {...input} {...props} />
+			</div>
+			{meta.error && meta.touched && <span>{meta.error}</span>}
+		</div>
+	)
+}
+
+export const Textarea = ({ input, meta, ...props }) => {
+	return (
+		<div className={`formControl ${meta.error && meta.touched ? "error" : ''}`}>
+			<div className="formControl__itemTextarea">
 				<textarea {...input} {...props} />
 			</div>
 			{meta.error && meta.touched && <span>{meta.error}</span>}

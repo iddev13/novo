@@ -9,6 +9,7 @@ import Box from '@material-ui/core/Box';
 import Favorites from '../pages/favorites/Favorites';
 import Message from '../pages/message/Message';
 import ProfileSetting from '../pages/profile-setting/ProfileSetting';
+import MyAdsContainer from '../pages/my-ads/MyAdsContainer';
 
 let messageAmount = 4;
 
@@ -104,24 +105,28 @@ export default function ProfileTabs() {
 						}}
 						aria-label="simple tabs example"
 					>
-						<Tab label="Избранное" {...a11yProps(0)} />
+						<Tab label="Мои объявления" {...a11yProps(0)} />
+						<Tab label="Избранное" {...a11yProps(1)} />
 
 						<Tab
 							className={classes.message}
-							label="Сообщения" {...a11yProps(1)} />
+							label="Сообщения" {...a11yProps(2)} />
 
-						<Tab label="Настройки профиля" {...a11yProps(2)} />
+						<Tab label="Настройки профиля" {...a11yProps(3)} />
 					</Tabs>
 				</div>
 
 			</AppBar >
 			<TabPanel value={value} index={0}>
-				<Favorites />
+				<MyAdsContainer />
 			</TabPanel>
 			<TabPanel value={value} index={1}>
-				<Message />
+				<Favorites />
 			</TabPanel>
 			<TabPanel value={value} index={2}>
+				<Message />
+			</TabPanel>
+			<TabPanel value={value} index={3}>
 				<ProfileSetting />
 			</TabPanel>
 		</div>
