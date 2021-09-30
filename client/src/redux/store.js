@@ -7,6 +7,7 @@ import logosReducer from "./reducers/logos-reducer";
 import novodbReducer from "./reducers/novodb";
 import profileReducer from "./reducers/profile-reducer";
 import selectHelper from "./reducers/select-helper";
+import userReducer from "./reducers/user-reducer";
 
 
 let reducers = combineReducers({
@@ -17,6 +18,7 @@ let reducers = combineReducers({
 	headerNav: headerNavReducer,
 	profile: profileReducer,
 	logos: logosReducer,
+	user: userReducer,
 });
 
 

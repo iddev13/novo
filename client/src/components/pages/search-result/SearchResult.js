@@ -7,7 +7,7 @@ import WithPlusSelect from '../../common/selects/with-plus/WithPlusSelect';
 import RangeSlider from './range-slider/RangeSlider';
 import AccordionM from '../../common/accordions/AccordionM';
 import CheckboxM from '../../common/checkboxes/CheckboxM';
-import SelectRV2 from '../../common/selects/select-react.v2/SelectRV2';
+import SearchResultItem from './SearchResultItem';
 
 
 const SearchResult = (props) => {
@@ -79,8 +79,10 @@ const SearchResult = (props) => {
 						</footer>
 					</aside>
 					<section className="searchResult__content content-searchResult">
-						<div className="content-searchResult__select">
-							<SelectRV2 />
+						<div className="content-searchResult__items">
+							<SearchResultItem category="цена" value1="1200" value2="152444" />
+							<SearchResultItem category="цена" value1="1200" value2="152444" />
+							<button className="content-searchResult__itemsClear">Очистить всё</button>
 						</div>
 						<ul className="content-searchResult__cards">
 							<li className="content-searchResult__card">

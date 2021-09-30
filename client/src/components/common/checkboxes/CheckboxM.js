@@ -32,6 +32,7 @@ export default function CheckboxM() {
 			<FormControlLabel
 				control={<GreenCheckbox checked={state.checkedG} onChange={handleChange} name="checkedG" />}
 				label="Custom color"
+				style={{ padding: '0 0 0 10px' }}
 			/>
 		</FormGroup>
 	);

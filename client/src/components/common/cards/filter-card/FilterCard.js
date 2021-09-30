@@ -2,17 +2,18 @@ import Location from '../../sprite/Location';
 import './FilterCard.scss';
 import car from '../../../../image/cars/opel.jpg';
 import DayOffer from './DayOffer';
+import { NavLink } from 'react-router-dom';
 
 const FilterCard = ({ card_description }) => {
 	return (
 		<section className="filter-card">
 			<div className="filter-card__image">
-				<a className="filter-card__image-wrapper" href="/">
+				<NavLink className="filter-card__image-wrapper" to="/product-card">
 					<img src={car} alt="Opel" />
-				</a>
+				</NavLink>
 			</div>
 			<h2 className="filter-card__title">
-				<a href="/">Opel COMBO Airco Elct Ramen Stuurbediening  Garage van Nierop NetherlandsGarage van Nierop Netherlands</a>
+				<NavLink to="/product-card">Opel COMBO Airco Elct Ramen Stuurbediening  Garage van Nierop NetherlandsGarage van Nierop Netherlands</NavLink>
 			</h2>
 			{card_description
 				? <span className="filter-card__description">Закрытые грузопассажирские автомобили</span>
@@ -31,9 +32,9 @@ const FilterCard = ({ card_description }) => {
 				</div>
 			</div>
 			{card_description
-			?<DayOffer />
-			: null
-		}
+				? <DayOffer />
+				: null
+			}
 		</section>
 	)
 }

@@ -46,7 +46,7 @@ const RecentlyViewed = () => {
 									// when window width is >= 640px
 									1000: {
 										slidesPerView: 4,
-										spaceBetween: 40
+										spaceBetween: 20
 									}
 								}
 							}

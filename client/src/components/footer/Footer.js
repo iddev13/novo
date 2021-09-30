@@ -3,6 +3,7 @@ import FooterInstagram from '../common/sprite/FooterIstagram';
 import FooterYoutube from '../common/sprite/FooterYoutube';
 import classes from './Footer.module.scss';
 import logo from '../../image/NOVO-white.svg';
+import { NavLink } from 'react-router-dom';
 
 const Footer = (props) => {
 	return (
@@ -11,9 +12,9 @@ const Footer = (props) => {
 				<section className={classes.footer__inner}>
 					<div className={classes.footer__left}>
 						<div className={classes.footer__logo}>
-							<a href="/">
+							<NavLink to="/">
 								<img src={logo} alt="Logo" />
-							</a>
+							</NavLink>
 						</div>
 						<p className={classes.centerFooter__title}>
 							Маркетплейс коммерчиского транспорта и тяжелой техники
@@ -24,9 +25,9 @@ const Footer = (props) => {
 						<ul className={classes.centerFooter__list}>
 							<li>
 								<ul className={classes.centerFooter__sublist}>
-									<li><a href="/">Служба поддержки</a></li>
-									<li><a href="/">Служба поддержки</a></li>
-									<li><a href="/">Служба поддержки</a></li>
+									<li><NavLink to="/error">Служба поддержки</NavLink></li>
+									<li><NavLink to="/">Служба поддержки</NavLink></li>
+									<li><NavLink to="/">Служба поддержки</NavLink></li>
 								</ul>
 							</li>
 							<li>
@@ -39,9 +40,9 @@ const Footer = (props) => {
 					<div className={`${classes.footer__social} ${classes.socialFooter}`}>
 						<h5 className={classes.centerFooter__title}>Следите за нами</h5>
 						<ul className={classes.socialFooter__list}>
-							<li><FooterFacebook /></li>
-							<li><FooterInstagram /></li>
-							<li><FooterYoutube /></li>
+							<li><a href="/"><FooterFacebook /></a></li>
+							<li><a href="/"><FooterInstagram /></a></li>
+							<li><a href="/"><FooterYoutube /></a></li>
 						</ul>
 					</div>
 				</section>

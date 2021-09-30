@@ -22,6 +22,6 @@ export const getAuthIsSeller = (state) => {
 	return state.auth.isSeller
 }
 
-export const getAuthFull = (state) => {
-	return state.auth.isAuthFull
+export const getAuthLoginText = (state) => {
+	return state.auth.isAuthText
 }

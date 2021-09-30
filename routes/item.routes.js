@@ -10,17 +10,14 @@ router.post('/add', auth, async (req, res) => {
     // if (existing) {
     //   return res.json({ item: existing })
     // }
-    const { category, year, brand, millage, model, country, price, weight, files, description } = req.body;
-
-    console.log(req.body.category);
-    console.log(req.body.year);
+    const { category, year, brand, milaege, model, country, price, weight, files, description } = req.body;
 
     const item = new Item({
-      category, year, owner: req.user.userId
+      category, year, brand, model, country, price, weight, description, files, owner: req.user.userId
     })
 
     await item.save(function (err) {
-      if (err) return handleError(err);
+      if (err) console.log(err);
     })
 
     console.log('Item', item);

@@ -71,10 +71,6 @@
 	padding: 12px 16px;
 }
 
-.formControl__itemtextarea {
-	// height: 100px;
-}
-
 .formControl__item input:focus {
 	border: 1px solid #4fbb65;
 }
@@ -88,6 +84,7 @@
 	width: 16px;
 	height: 16px;
 	position: relative;
+	cursor: pointer;
 }
 
 .checkbox.active {
@@ -133,4 +130,13 @@
 
 .checkbox input {
 	display: none;
+}
+
+.form-dialogs {
+}
+.form-dialogs__item {
+	width: 100%;
+}
+.form-dialogs__item input {
+	width: inherit;
 }

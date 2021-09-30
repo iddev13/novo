@@ -39,6 +39,32 @@ export const InputFile = ({ input, meta, ...props }) => {
 	)
 }
 
+export const DialogInput = ({ input, meta, ...props }) => {
+	// debugger
+	return (
+		<div className={`formControl ${meta.error && meta.touched ? "error" : ''}`}>
+			<div className="form-dialogs__item">
+				<input {...input} {...props} />
+			</div>
+			{meta.error && meta.touched && <span>{meta.error}</span>}
+		</div>
+	)
+}
+
+export const DialogInputFile = ({ input, meta, ...props }) => {
+	// debugger
+	delete input.value
+
+	return (
+		<div className={`formControl ${meta.error && meta.touched ? "error" : ''}`}>
+			<div className="form-dialogs__item">
+				<input type="file" {...input} {...props} />
+			</div>
+			{meta.error && meta.touched && <span>{meta.error}</span>}
+		</div>
+	)
+}
+
 export const Textarea = ({ input, meta, ...props }) => {
 	return (
 		<div className={`formControl ${meta.error && meta.touched ? "error" : ''}`}>

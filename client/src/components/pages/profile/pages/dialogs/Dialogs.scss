@@ -1,5 +1,136 @@
-@import '../../../index.scss';
+@import "../../../../../index.scss";
 
 .dialogs {
-	
+	&__header,
+	&__footer {
+		background: #ffffff;
+		border-radius: 8px;
+		@include flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+	&__header {
+		padding: 21px 32px;
+		& a {
+			position: relative;
+			padding: 0 0 0 16px;
+			&::before {
+				content: "";
+				display: block;
+				width: 6px;
+				height: 10px;
+				background: url(../../../../../image/arrow-left.svg) no-repeat center / cover;
+				position: absolute;
+				top: 50%;
+				left: 0;
+				z-index: 1;
+				transform: translate(0, -50%);
+			}
+		}
+	}
+	&__companion {
+		font-family: "ManropeMedium", sans-serif;
+		font-size: 20px;
+		line-height: 150%;
+		color: #252525;
+	}
+	&__body {
+		max-height: 530px;
+		height: 100%;
+		padding: 0px 16px 0px 0px;
+		margin: 40px 0px;
+		overflow-y: scroll;
+	}
+	&__list {
+	}
+	&__item {
+		@include flex;
+		align-items: center;
+		padding: 4px 0;
+	}
+	&__itemBlock {
+	}
+	&__text {
+		@include flex;
+		align-items: center;
+		margin: 0px 16px 0px 0px;
+	}
+	&__resIcon {
+	}
+	&__itemTime {
+		font-family: "ManropeMedium", sans-serif;
+		font-size: 12px;
+		line-height: 24px;
+		color: #ffffff81;
+	}
+	&__incoming {
+		justify-content: flex-start;
+		.dialogs__text {
+			color: #fff;
+		}
+	}
+	&__outgoing {
+		justify-content: flex-end;
+		.dialogs__itemTime {
+			color: #8b959e;
+		}
+	}
+	&__incomingMessages {
+		display: inline-flex;
+		background: #8b959e;
+		border-radius: 8px 8px 8px 0px;
+		padding: 6px 8px;
+	}
+	&__outgoingMessages {
+		display: inline-flex;
+		background: #ffffff;
+		border-radius: 4px 4px 0px 4px;
+		padding: 6px 8px;
+	}
+	&__footer {
+		padding: 8px;
+		margin: 0 0 90px 0;
+	}
+	&__form {
+		width: 100%;
+		@include flex;
+		align-items: center;
+		padding: 0px 0px 0px 32px;
+	}
+	&__formLeft {
+		flex: 1 1 70%;
+		padding: 0px 20px 0px 0px;
+		& .formControl {
+			display: block;
+			width: inherit;
+		}
+	}
+	&__formRight {
+		@include flex;
+		align-items: center;
+		justify-content: flex-end;
+		flex: 0 1 35%;
+		& input {
+			display: none;
+			visibility: hidden;
+			opacity: 0;
+		}
+		& label {
+			@include flex;
+			align-items: center;
+			font-family: "ManropeSemiBold", sans-serif;
+			font-size: 14px;
+			line-height: 24px;
+			color: #8b959e;
+			margin: 0px 32px 0px 0px;
+			cursor: pointer;
+			& svg {
+				width: 25px;
+				height: 25px;
+				fill: #8b959e;
+				margin: 0px 10px 0px 0px;
+				transform: rotate(45deg);
+			}
+		}
+	}
 }

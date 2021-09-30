@@ -1,5 +1,8 @@
 const LOGIN = 'novo/auth/LOGIN';
 const LOGOUT = 'novo/auth/LOGOUT';
+const REGISTER = 'novo/auth/REGISTER';
+const LOGIN_MESSAGE = 'novo/auth/LOGIN_MESSAGE';
+const CLEAR_LOGIN_MESSAGE = 'novo/auth/CLEAR_LOGIN_MESSAGE';
 
 const storageName = 'userData'
 
@@ -15,7 +18,7 @@ let initialState = {
 	userId: null,
 	isAuthenticated: getStorageToken() || false,
 	isSeller: true,
-	isAuthFull: getStorageToken() || false,
+	isAuthText: ''
 };
 
 const authReducer = (state = initialState, action) => {
@@ -23,7 +26,7 @@ const authReducer = (state = initialState, action) => {
 		case LOGIN:
 			const data = JSON.parse(localStorage.getItem(storageName))
 			if (data && data.token) {
-				console.log(data.token, data.userId)
+				// console.log(data.token, data.userId)
 				return {
 					...state,
 					token: data.token,
@@ -34,12 +37,26 @@ const authReducer = (state = initialState, action) => {
 			}
 			return { ...state }
 		case LOGOUT:
-			return {
-				...state,
-				isAuthenticated: false
-			}
+			return { ...state, isAuthenticated: false }
+		case CLEAR_LOGIN_MESSAGE:
+			return { ...state, isAuthText: '' }
+		case LOGIN_MESSAGE:
+			return { ...state, isAuthText: action.text }
 
 		default: return state;
+	}
+}
+
+export const changeAuthLoginText = (text) => {
+	return {
+		type: LOGIN_MESSAGE,
+		text
+	}
+}
+
+export const cleanLoginMessage = () => {
+	return {
+		type: CLEAR_LOGIN_MESSAGE
 	}
 }
 
@@ -57,6 +74,53 @@ export const logoutAuth = () => {
 	localStorage.removeItem(storageName)
 	return {
 		type: LOGOUT
+	}
+}
+
+// export const getLoginData = async (formData, request) => {
+// 	try {
+// 		const data = await request('/api/auth/login', 'POST', { ...formData });
+// 		// login(data.token, data.userId)
+// 		loginAuth(data.token, data.userId);
+// 		console.log(data.message);
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+// }
+
+// export const getRegisterData = async (formData, request) => {
+// 	try {
+// 		const data = await request('/api/auth/register', 'POST', { ...formData });
+// 		console.log(data.message);
+// 	} catch (error) {
+// 		console.log(error);
+// 	}
+// }
+
+export const LoginTC = (formData, request) => {
+	return async (dispatch) => {
+		console.log('LoginTC');
+		try {
+			const data = await request('/api/auth/login', 'POST', { ...formData });
+			dispatch(loginAuth(data.token, data.userId));
+			dispatch(changeAuthLoginText(data.message))
+			console.log('console LoginTC', data.message);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+}
+
+export const RegisterTC = (formData, request) => {
+	return async (dispatch) => {
+		try {
+			console.log('RergisterTC');
+			const data = await request('/api/auth/register', 'POST', { ...formData });
+			console.log(data.message);
+			dispatch(changeAuthLoginText(data.message))
+		} catch (error) {
+			console.log(error);
+		}
 	}
 }
 

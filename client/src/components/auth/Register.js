@@ -58,7 +58,6 @@ const Register = ({ loading, ...props }) => {
 						<div className="authForm__formItem authForm__formItem--checkbox">
 							<Field
 								name="TermsOfUse"
-								id="doNotLogOut"
 								component={Checkbox}
 								type="checkbox"
 								checked={true}

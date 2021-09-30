@@ -138,7 +138,7 @@ const NewAdForm = ({ ...props }) => {
 				<h4 className="newAd__title">Описание</h4>
 				<div className="newAd__descripion">
 					<Field
-						name="descripion"
+						name="description"
 						type="text"
 						id="newAdCategory"
 						placeholder="Описание"

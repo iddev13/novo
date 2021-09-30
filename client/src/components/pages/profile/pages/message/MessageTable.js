@@ -21,8 +21,8 @@ const useStyles = makeStyles({
 	table: {
 		minWidth: 650,
 	},
-	td: {
-		cursor: 'pointer',
+	a: {
+		color: 'inherit',
 	},
 	deleteBtn: {
 		background: '#eb575721',
@@ -98,7 +98,7 @@ function MessageTable() {
 					</TableHead>
 					<TableBody>
 						{rows.map((row) => (
-							<TableRow className={classes.td} key={row.fullName}>
+							<TableRow key={row.fullName}>
 								<TableCell align="right">
 									<FormGroup row>
 										<FormControlLabel
@@ -106,8 +106,11 @@ function MessageTable() {
 										/>
 									</FormGroup>
 								</TableCell>
-								<TableCell component="th" scope="row">{row.fullName}</TableCell>
-								<TableCell align="left">{row.ads}</TableCell>
+								<TableCell component="th" scope="row">
+									<a href="/" className={classes.a}>{row.fullName}</a>
+								</TableCell>
+								<TableCell align="left">
+									<a href="/" className={classes.a}>{row.ads}</a></TableCell>
 								<TableCell align="center">{row.numberMessage}</TableCell>
 								<TableCell align="center">{row.time}</TableCell>
 							</TableRow>
