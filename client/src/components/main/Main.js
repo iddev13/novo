@@ -9,6 +9,7 @@ import SearchResultContainer from '../pages/search-result/SearchResultContainer'
 import Preloader from '../common/preloader/Preloader';
 import Page404 from '../pages/404-page/404';
 import './Main.scss';
+import TestComponentContainer from '../common/test/TestComponent';
 const ProductCardContainer = React.lazy(() => import('../pages/product-card/ProductCardContainer'));
 
 const Main = () => {
@@ -30,6 +31,7 @@ const Main = () => {
 					<Page404 />
 				</Suspense>
 			}} />
+			<Route path="/test" render={() => <TestComponentContainer />} />
 		</main>
 	)
 }

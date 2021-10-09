@@ -14,6 +14,7 @@ app.use(express.json({ extended: true }));
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/link', require('./routes/link.routes'));
 app.use('/api/item', require('./routes/item.routes'));
+app.use('/api/message', require('./routes/messages.routes'));
 
 const PORT = config.get('port') || 5000;
 

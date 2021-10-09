@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import { getHeaderNavCurrency, getHeaderNavLanguage } from "../../../redux/selectors/headerNav-selector";
 import Nav from "./Nav";
-import { changeSelectValue, setActiveLanguage, setActiveCurrency } from '../../../redux/reducers/novodb';
+import { changeSelectValue} from '../../../redux/reducers/novodb';
+import { setActiveLanguage, setActiveCurrency } from '../../../redux/reducers/headerNav-reducer';
 
 let mapStateToProps = (state) => {
 	return {

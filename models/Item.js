@@ -2,16 +2,15 @@ const { Schema, model, Types } = require('mongoose')
 
 const schema = new Schema({
   category: { type: String, required: true },
-  year: { type: String, required: true },
+  year: { type: Number, required: true },
   brand: { type: String, required: true },
-  // milaege: { type: Number, required: false },
+  km: { type: Number, required: true },
   model: { type: String, required: true },
   country: { type: String, required: true },
-  price: { type: String, required: true },
+  price: { type: Number, required: true },
   weight: { type: Number, required: true },
   date: { type: Date, default: Date.now },
-  // clicks: { type: Number, default: 0 },
-  files: { type: Buffer },
+  imageSrc: { type: String, default: '' },
   description: { type: String, required: true },
   owner: { type: Types.ObjectId, ref: 'User' }
 })

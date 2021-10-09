@@ -1,19 +1,23 @@
 const { Router } = require('express')
 const Item = require('../models/Item')
 const auth = require('../middleware/auth.middleware')
+const upload = require('../middleware/upload')
 const router = Router()
 
-router.post('/add', auth, async (req, res) => {
+router.post('/add', auth, upload.single('image'), async (req, res) => {
   try {
-    console.log('itemCreate', req.body);
+    console.log('itemCreate', req.body.media1[0]);
+    console.log('itemFile', req.file);
 
     // if (existing) {
     //   return res.json({ item: existing })
     // }
-    const { category, year, brand, milaege, model, country, price, weight, files, description } = req.body;
+    const { category, year, brand, km, model, country, price, weight, media1, description } = req.body;
 
     const item = new Item({
-      category, year, brand, model, country, price, weight, description, files, owner: req.user.userId
+      category, year, brand, km, model, country, price, weight, description,
+      imageSrc: req.body.files ? req.file.path : '',
+      owner: req.user.userId
     })
 
     await item.save(function (err) {

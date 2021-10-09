@@ -6,7 +6,20 @@ import { Field, reduxForm, reset } from 'redux-form';
 import './Dialogs.scss';
 import DialogsFormRedux from './DialogsForm';
 
-const Dialogs = (props) => {
+const Dialogs = ({ messages, ...props }) => {
+	// debugger
+	let dialogsLisst = messages.map(elem => {
+		return <li className={`dialogs__item dialogs__outgoing`} key={elem._id}>
+			<div className="dialogs__outgoingMessages">
+				<span className="dialogs__text">{elem.message}</span>
+				<p>
+					<span className="dialogs__itemTime">{elem.date}</span>
+				</p>
+			</div>
+
+		</li>
+	})
+
 	return (
 		<article className="dialogs">
 			<header className="dialogs__header">
@@ -15,18 +28,16 @@ const Dialogs = (props) => {
 			</header>
 			<section className="dialogs__body">
 				<ul className="dialogs__list">
-					<li className={`dialogs__item dialogs__outgoing`}>
+					{/* <li className={`dialogs__item dialogs__outgoing`}>
 						<div className="dialogs__outgoingMessages">
-							<span className="dialogs__text">Привет, как у тебя дела?</span>
-							{/* <div className="dialogs__resIcon">
-								<DoneAllIcon />
-							</div> */}
+							<span className="dialogs__text">
+							</span>
 							<p>
 								<span className="dialogs__itemTime">14:59</span>
 							</p>
 						</div>
-
-					</li>
+					</li> */}
+					{dialogsLisst}
 					<li className={`dialogs__item dialogs__incoming`}>
 						<div className="dialogs__incomingMessages">
 							<span className="dialogs__text">Привет, у меня все ок, а у тебя?</span>

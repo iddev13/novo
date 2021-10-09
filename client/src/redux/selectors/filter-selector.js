@@ -1,5 +1,5 @@
 export const getNovodbCars = (state) => {
-	return state.novodb.cars
+	return state.homeFilter.cars
 }
 
 export const getSelectorValueCountry = (state) => {

@@ -72,7 +72,7 @@ const NewAdForm = ({ ...props }) => {
 						<label
 							htmlFor="newAdMileage">Пробег</label>
 						<Field
-							name="mileage"
+							name="km"
 							type="number"
 							id="newAdMileage"
 							component={Input} />

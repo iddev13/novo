@@ -3,9 +3,9 @@ export const getHeaderNavActive = (state) => {
 }
 
 export const getHeaderNavLanguage = (state) => {
-	return state.novodb.language
+	return state.headerNav.language
 }
 
 export const getHeaderNavCurrency = (state) => {
-	return state.novodb.currency
+	return state.headerNav.currency
 }

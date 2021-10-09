@@ -12,7 +12,7 @@ const DialogsForm = (props) => {
 		<form onSubmit={props.handleSubmit} className="dialogs__form">
 			<div className="dialogs__formLeft">
 				<Field
-					name="dialogsOutgoingText"
+					name="message"
 					type="text"
 					placeholder="Напишите свое сообщение..."
 					component={DialogInput} />

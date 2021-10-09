@@ -6,7 +6,7 @@ const CLEAR_LOGIN_MESSAGE = 'novo/auth/CLEAR_LOGIN_MESSAGE';
 
 const storageName = 'userData'
 
-const getStorageToken = () => {
+export const getStorageToken = () => {
 	const data = JSON.parse(localStorage.getItem(storageName))
 	if (data && data.token && data.token !== '') {
 		return data.token

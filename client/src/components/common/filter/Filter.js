@@ -77,7 +77,8 @@ const Filter = (props) => {
 										key={index.toString()}
 									>
 										<button
-											className={index === 0 ? 'active' : ''}
+											className={index === props.currentCategory ? 'active' : ''}
+											onClick={() => { props.setCategory(index) }}
 										>
 											{elem}
 										</button>
@@ -121,6 +122,7 @@ const Filter = (props) => {
 										defaultValue={createOptions(props.weight)[0]}
 										styles={customStyles}
 										options={createOptions(props.weight)}
+										onChange={(event) => { console.log(event.value) }}
 									/>
 								</div>
 							</div>

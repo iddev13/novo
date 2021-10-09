@@ -26,7 +26,7 @@ const Footer = (props) => {
 							<li>
 								<ul className={classes.centerFooter__sublist}>
 									<li><NavLink to="/error">Служба поддержки</NavLink></li>
-									<li><NavLink to="/">Служба поддержки</NavLink></li>
+									<li><NavLink to="/test">Служба поддержки</NavLink></li>
 									<li><NavLink to="/">Служба поддержки</NavLink></li>
 								</ul>
 							</li>

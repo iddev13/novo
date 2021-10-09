@@ -2,7 +2,9 @@ import { combineReducers, createStore, applyMiddleware } from "redux";
 import { reducer as formReducer } from 'redux-form'
 import thunkMiddleware from 'redux-thunk';
 import authReducer from "./reducers/auth-reducer";
+import dialogReducer from "./reducers/dialog-reducer";
 import headerNavReducer from "./reducers/headerNav-reducer";
+import homeFilterReducer from "./reducers/homeFilter-reducer";
 import logosReducer from "./reducers/logos-reducer";
 import novodbReducer from "./reducers/novodb";
 import profileReducer from "./reducers/profile-reducer";
@@ -19,6 +21,8 @@ let reducers = combineReducers({
 	profile: profileReducer,
 	logos: logosReducer,
 	user: userReducer,
+	homeFilter: homeFilterReducer,
+	dialog: dialogReducer,
 });
 
 

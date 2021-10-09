@@ -1,7 +1,8 @@
-const CHANGE_SELECT_VALUE = 'novo/common/CHANGE_SELECT_VALUE';
-
+const SET_CATEGORY_INDEX = 'novo/homeFilter/SET_CATEGORY_INDEX';
 
 let initialState = {
+	filterCurrentCategory: 0,
+	filterWeight: '32',
 	cars: [
 		{ id: 1, category: 'транспорт', weightCat: 'легковые', country: 'germany', brand: 'opel', model: 'combo airco elct ramen', year: 2014, mileage: 200000, weight: 2000, description: 'А также диаграммы связей являются только методом политического участия и ограничены исключительно образом мышления. Постоянный количественный рост и сфера нашей активности требует от нас анализа новых принципов формирования материально-технической и кадровой базы. В рамках спецификации современных стандартов, сторонники тоталитаризма в науке будут функционально разнесены на независимые элементы.', owner: 'иван', price: 2000 },
 		{ id: 2, category: 'транспорт', weightCat: 'легковые', country: 'germany', brand: 'bmw', model: '525', year: 1992, mileage: 600000, weight: 2000, description: 'А также диаграммы связей являются только методом политического участия и ограничены исключительно образом мышления. Постоянный количественный рост и сфера нашей активности требует от нас анализа новых принципов формирования материально-технической и кадровой базы. В рамках спецификации современных стандартов, сторонники тоталитаризма в науке будут функционально разнесены на независимые элементы.', owner: 'олег', price: 3000 },
@@ -13,24 +14,21 @@ let initialState = {
 	]
 }
 
-const novodbReducer = (state = initialState, action) => {
+const homeFilterReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case CHANGE_SELECT_VALUE:
+		case SET_CATEGORY_INDEX:
 			return {
-				...state,
-				languageActive: action.value
+				...state, filterCurrentCategory: action.index
 			}
-		default:
-			return state;
+		default: return state;
 	}
 }
 
-
-export const changeSelectValue = (value) => {
+export const setCategory = (index) => {
 	return {
-		type: CHANGE_SELECT_VALUE,
-		value
+		type: SET_CATEGORY_INDEX,
+		index
 	}
 }
 
-export default novodbReducer;
+export default homeFilterReducer;

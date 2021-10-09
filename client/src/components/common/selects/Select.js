@@ -4,7 +4,7 @@ import './Select.scss';
 
 const Select = ({ item, selected, setSelected, name, additionalCharacter }) => {
 
-	const placeholder = localStorage.getItem(name) ?? selected;
+	const placeholder = sessionStorage.getItem(name) ?? selected;
 	const [isActive, setIsActive] = useState(false);
 
 	let options = item.map((elem, index) => {
@@ -13,7 +13,7 @@ const Select = ({ item, selected, setSelected, name, additionalCharacter }) => {
 			onClick={(event) => {
 				setSelected(elem)
 				setIsActive(false)
-				localStorage.setItem(name, elem);
+				sessionStorage.setItem(name, elem);
 			}}
 			key={index.toString()}>{`${elem}`}</div>
 	})

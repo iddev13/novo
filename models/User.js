@@ -6,7 +6,8 @@ const schema = new Schema({
 	name: { type: String, required: true },
 	surname: { type: String, required: true },
 	links: [{ type: Schema.Types.ObjectId, ref: 'Link' }],
-	items: [{ type: Schema.Types.ObjectId, ref: 'Item' }]
+	items: [{ type: Schema.Types.ObjectId, ref: 'Item' }],
+	messages: [{ type: Schema.Types.ObjectId, ref: 'Messages' }],
 })
 
 module.exports = model('User', schema)
