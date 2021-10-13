@@ -8,6 +8,7 @@ import NewAd from "./new-ad/NewAd";
 import { useHttp } from '../../../../../hooks/Hooks';
 import { loginAuth } from '../../../../../redux/reducers/auth-reducer';
 import { useMessage } from "../../../../../hooks/message.hook";
+import { pushAdTC } from "../../../../../redux/reducers/user-reducer";
 
 const MyAdsContainer = (props) => {
 	// debugger
@@ -21,19 +22,7 @@ const MyAdsContainer = (props) => {
 	}
 
 	const formData = (formdata) => {
-		console.log(props);
-		console.log('NewAd formdata:', formdata);
-		const itemHandler = async () => {
-			try {
-				const data = await request('/api/item/add', 'POST', { ...formdata }, { Authorization: `Bearer ${props.isAuth}` });
-				message(data.message);
-				// login(data.token, data.userId)
-				// props.loginAuth(data.token, data.userId)
-			} catch (error) {
-				throw new Error(error)
-			}
-		}
-		itemHandler();
+		props.pushAdTC(formdata, request);
 	}
 
 	return (
@@ -54,7 +43,7 @@ let mapStateToProps = (state) => {
 }
 
 const MyAdsContainerRedux = connect(mapStateToProps, {
-	loginAuth
+	loginAuth, pushAdTC
 })(MyAdsContainer);
 
 export default MyAdsContainerRedux

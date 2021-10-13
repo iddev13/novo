@@ -7,15 +7,13 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Favorites from '../pages/favorites/Favorites';
-import Message from '../pages/message/Message';
 import ProfileSetting from '../pages/profile-setting/ProfileSetting';
 import MyAdsContainer from '../pages/my-ads/MyAdsContainer';
-
-let messageAmount = 4;
+import MessageContainer from '../pages/message/MessageContainer';
 
 function TabPanel(props) {
 	const { children, value, index, ...other } = props;
-
+	console.log(props);
 	return (
 		<div
 			role="tabpanel"
@@ -39,13 +37,6 @@ TabPanel.propTypes = {
 	value: PropTypes.any.isRequired,
 };
 
-function a11yProps(index) {
-	return {
-		id: `simple-tab-${index}`,
-		'aria-controls': `simple-tabpanel-${index}`,
-	};
-}
-
 const useStyles = makeStyles((theme) => ({
 	header: {
 		background: '#fff',
@@ -57,37 +48,33 @@ const useStyles = makeStyles((theme) => ({
 	},
 	root: {
 		flexGrow: 1,
-		// backgroundColor: theme.palette.background.paper,
 	},
-	se: {
-		// '&::before': {
-		// 	content: '"some content"',
-		// 	display: 'block',
-		// 	height: 60,
-		// 	marginTop: -60,
-		// 	background: 'green'
-		// }
-	},
-	message: {
-		'&::after': {
-			content: `"(${messageAmount} новых)"`,
-			display: 'block',
-			position: 'relative',
-			right: '-3px',
-			zIdex: '1',
-			whiteSpace: 'nowrap',
-			color: '#009661',
-			textTransform: 'lowercase',
-		}
-	}
+
+	// message: {
+	// 	'&::after': {
+	// 		content: `"(${messageAmount} новых)"`,
+	// 		display: 'block',
+	// 		position: 'relative',
+	// 		right: '-3px',
+	// 		zIdex: '1',
+	// 		whiteSpace: 'nowrap',
+	// 		color: '#009661',
+	// 		textTransform: 'lowercase',
+	// 	}
+	// }
 }));
 
-export default function ProfileTabs() {
-	const classes = useStyles();
-	const [value, setValue] = React.useState(0);
+const messageAmountComponent = (props) => {
+	debugger
+	return (
+		<span>{props.messageAmount}</span>
+	)
+}
 
+export default function ProfileTabs({ activeTab, messageAmount, getA11yProps, tabHandleChange, ...props }) {
+	const classes = useStyles();
 	const handleChange = (event, newValue) => {
-		setValue(newValue);
+		tabHandleChange(newValue)
 	};
 
 	return (
@@ -95,7 +82,7 @@ export default function ProfileTabs() {
 			<AppBar className={classes.header} position="static">
 				<div className="container">
 					<Tabs
-						value={value}
+						value={activeTab}
 						onChange={handleChange}
 						TabIndicatorProps={{
 							style: {
@@ -105,28 +92,28 @@ export default function ProfileTabs() {
 						}}
 						aria-label="simple tabs example"
 					>
-						<Tab label="Мои объявления" {...a11yProps(0)} />
-						<Tab label="Избранное" {...a11yProps(1)} />
+						<Tab label="Мои объявления" {...getA11yProps(0)} />
+						<Tab label="Избранное" {...getA11yProps(1)} />
 
 						<Tab
 							className={classes.message}
-							label="Сообщения" {...a11yProps(2)} />
+							label={`Сообщения (${messageAmount})`} {...getA11yProps(2)} />
 
-						<Tab label="Настройки профиля" {...a11yProps(3)} />
+						<Tab label="Настройки профиля" {...getA11yProps(3)} />
 					</Tabs>
 				</div>
 
 			</AppBar >
-			<TabPanel value={value} index={0}>
+			<TabPanel value={activeTab} index={0}>
 				<MyAdsContainer />
 			</TabPanel>
-			<TabPanel value={value} index={1}>
+			<TabPanel value={activeTab} index={1}>
 				<Favorites />
 			</TabPanel>
-			<TabPanel value={value} index={2}>
-				<Message />
+			<TabPanel value={activeTab} index={2}>
+				<MessageContainer />
 			</TabPanel>
-			<TabPanel value={value} index={3}>
+			<TabPanel value={activeTab} index={3}>
 				<ProfileSetting />
 			</TabPanel>
 		</div>

@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import FooterContainer from '../footer/FooterContainer';
 import HeaderContainer from '../header/HeaderContainer';
@@ -6,8 +5,6 @@ import Main from '../main/Main';
 import './App.scss';
 
 function App({ token, login, logout, userId, isAuthenticated }) {
-  // debugger
-
   // App wrapper animation
   let [active, setActive] = useState(false)
 

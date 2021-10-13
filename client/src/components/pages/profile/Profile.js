@@ -5,7 +5,7 @@ import ProfileTabs from './profile-tabs/ProfileTabs';
 import './Profile.scss';
 
 
-const Profile = () => {
+const Profile = ({ activeTab, getA11yProps, tabHandleChange, messageAmount, ...props }) => {
 
 	const [crumbs, setCrumbs] = useState(['Главная', 'Мой кабинет', 'Избранное'])
 
@@ -24,7 +24,11 @@ const Profile = () => {
 				</div>
 			</header>
 
-			<ProfileTabs />
+			<ProfileTabs
+				activeTab={activeTab}
+				getA11yProps={getA11yProps}
+				tabHandleChange={tabHandleChange}
+				messageAmount={messageAmount} />
 		</article>
 	)
 }

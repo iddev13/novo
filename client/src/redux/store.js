@@ -8,6 +8,7 @@ import homeFilterReducer from "./reducers/homeFilter-reducer";
 import logosReducer from "./reducers/logos-reducer";
 import novodbReducer from "./reducers/novodb";
 import profileReducer from "./reducers/profile-reducer";
+import searchResultReducer from "./reducers/searchResult-reduser";
 import selectHelper from "./reducers/select-helper";
 import userReducer from "./reducers/user-reducer";
 
@@ -23,6 +24,7 @@ let reducers = combineReducers({
 	user: userReducer,
 	homeFilter: homeFilterReducer,
 	dialog: dialogReducer,
+	searchResult: searchResultReducer
 });
 
 

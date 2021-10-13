@@ -10,15 +10,40 @@ import CheckboxM from '../../common/checkboxes/CheckboxM';
 import SearchResultItem from './SearchResultItem';
 
 
-const SearchResult = (props) => {
-
+const SearchResult = ({ items, ...props }) => {
+	// debugger
 	const [selectedWeightCat, setSelectedWightCat] = useState(props.weightCat[0]); // Weight select
 
 	const [crumbs, setCrumbs] = useState(['Главная', 'Транспортные средства'])
 
+	// Min Max Price
+	const minPrice = 0;
+	let maxPrice = 0;
+	items.forEach(elem => {
+		if (elem.price > maxPrice) maxPrice = elem.price;
+	});
+
 	const selected = (crumb) => {
 		console.log('BreadCrumbs: ', crumb);
 	}
+
+	const itemList = items.map(elem => {
+		return <li className="content-searchResult__card" key={elem.id}>
+			<SearchCard
+				category={elem.category}
+				brand={elem.brand}
+				model={elem.model}
+				country={elem.country}
+				date={elem.date}
+				description={elem.description}
+				km={elem.km}
+				owner={elem.owner}
+				price={elem.price}
+				weight={elem.weight}
+				year={elem.year}
+			/>
+		</li>
+	})
 
 	return (
 		<article className="searchResult">
@@ -29,7 +54,9 @@ const SearchResult = (props) => {
 				<section className="searchResult__body">
 					<aside className="searchResult__sidebar">
 						<WithPlusSelect selected="цена">
-							<RangeSlider />
+							<RangeSlider
+								minPrice={minPrice}
+								maxPrice={maxPrice} />
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Тип транспорта">
@@ -85,21 +112,7 @@ const SearchResult = (props) => {
 							<button className="content-searchResult__itemsClear">Очистить всё</button>
 						</div>
 						<ul className="content-searchResult__cards">
-							<li className="content-searchResult__card">
-								<SearchCard />
-							</li>
-							<li className="content-searchResult__card">
-								<SearchCard />
-							</li>
-							<li className="content-searchResult__card">
-								<SearchCard />
-							</li>
-							<li className="content-searchResult__card">
-								<SearchCard />
-							</li>
-							<li className="content-searchResult__card">
-								<SearchCard />
-							</li>
+							{itemList}
 						</ul>
 					</section>
 				</section>

@@ -43,7 +43,7 @@ const useStyles = makeStyles({
 		display: 'flex',
 		alignItems: 'center',
 		border: '2px solid #E9E9E9'
-		
+
 	},
 	item: {
 		display: 'flex',
@@ -102,12 +102,12 @@ export default function RangeSlider() {
 			<form className={classes.items}>
 				<div className={classes.item}>
 					<label className={classes.label} htmlFor="from">от</label>
-					<input type="text" id="from" placeholder="1200" className={classes.itemField} />
+					<input type="text" id="from" placeholder={value[0]} className={classes.itemField} />
 				</div>
 				<span className={classes.hr}></span>
 				<div className={classes.item}>
 					<label className={classes.label} htmlFor="to">до</label>
-					<input type="text" id="to" defaultValue="152444" className={classes.itemField} />
+					<input type="text" id="to" placeholder={value[1]} className={classes.itemField} />
 				</div>
 			</form >
 			<div className={classes.sliderWrapper}>

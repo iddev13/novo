@@ -2,7 +2,7 @@ import DialogsContainer from '../dialogs/DialogsContainer';
 import './Message.scss';
 import MessageTable from './MessageTable';
 
-const Message = () => {
+const Message = ({ ...props }) => {
 	return (
 		<section>
 			<div className="container">

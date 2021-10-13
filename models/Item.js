@@ -5,7 +5,7 @@ const schema = new Schema({
   year: { type: Number, required: true },
   brand: { type: String, required: true },
   km: { type: Number, required: true },
-  model: { type: String, required: true },
+  model: { type: String, required: false },
   country: { type: String, required: true },
   price: { type: Number, required: true },
   weight: { type: Number, required: true },

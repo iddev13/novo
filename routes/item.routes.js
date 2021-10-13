@@ -6,13 +6,13 @@ const router = Router()
 
 router.post('/add', auth, upload.single('image'), async (req, res) => {
   try {
-    console.log('itemCreate', req.body.media1[0]);
+    // console.log('itemCreate', req.body.media1[0]);
     console.log('itemFile', req.file);
 
     // if (existing) {
     //   return res.json({ item: existing })
     // }
-    const { category, year, brand, km, model, country, price, weight, media1, description } = req.body;
+    const { category, year, brand, km, model, country, price, weight, description } = req.body;
 
     const item = new Item({
       category, year, brand, km, model, country, price, weight, description,
@@ -29,6 +29,7 @@ router.post('/add', auth, upload.single('image'), async (req, res) => {
     res.status(201).json({ item })
   } catch (e) {
     // throw new Error(e)
+    console.log(e);
     res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова /add post' })
   }
 })
@@ -38,7 +39,7 @@ router.get('/', auth, async (req, res) => {
     const items = await Item.find({ owner: req.user.userId })
     res.json(items)
   } catch (e) {
-    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова ' })
+    res.status(500).json({ message: 'Что-то пошло не так, попробуйте снова /take get' })
   }
 })
 

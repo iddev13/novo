@@ -9,3 +9,11 @@ export const getHeaderNavLanguage = (state) => {
 export const getHeaderNavCurrency = (state) => {
 	return state.headerNav.currency
 }
+
+export const getHeaderNavActiveTab = (state) => {
+	return state.headerNav.activeTab
+}
+
+export const getHeaderNav = (state) => {
+	return state.headerNav.headerNav
+}

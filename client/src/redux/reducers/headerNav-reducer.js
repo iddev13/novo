@@ -1,8 +1,9 @@
 const TOGGLE_IS_ACTIVE = 'novo/nav/TOGGLE_IS_ACTIVE';
 const SET_ACTIVE_LANGUAGE = 'novo/headerNav/SET_ACTIVE_LANGUAGE';
 const SET_ACTIVE_CURRENCY = 'novo/headerNav/SET_ACTIVE_CURRENCY';
-
-// const storageLanguage = 'userLanguage';
+const NAV_HANDLE_CHANGE = 'novo/headerNav/NAV_HANDLE_CHANGE';
+const PROFILE_TABS = 'novo/headerNav/PROFILE_TABS';
+const PROFILE_TABS_CHANGE = 'novo/headerNav/PROFILE_TABS_CHANGE';
 
 let initialState = {
 	language: [
@@ -15,12 +16,14 @@ let initialState = {
 		{ id: 3, name: 'Рубль', nameSm: 'RUR', isActive: false },
 		{ id: 4, name: 'Гривна', nameSm: 'UAH', isActive: false },
 	],
-	myProfile: [
-		{ id: 1, adress: '/', name: 'Избранное' },
-		{ id: 2, adress: '/', name: 'Сообщнния' },
-		{ id: 3, adress: '/', name: 'Настройки профиля' },
+	headerNav: [
+		{ id: 1, name: 'Избранное' },
+		{ id: 2, name: 'Сообщнния' },
+		{ id: 3, name: 'Настройки профиля' },
+		{ id: 4, name: 'Выйти' },
 	],
-	isActive: false
+	isActive: false,
+	activeTab: 0,
 }
 
 const headerNavReducer = (state = initialState, action) => {
@@ -51,6 +54,16 @@ const headerNavReducer = (state = initialState, action) => {
 					return { ...elem, isActive: true }
 				})
 			}
+		case NAV_HANDLE_CHANGE:
+			return {
+				...state,
+				activeTab: action.id
+			}
+		case PROFILE_TABS_CHANGE:
+			return {
+				...state,
+				activeTab: action.index
+			}
 		default:
 			return state;
 	}
@@ -74,6 +87,28 @@ export const setActiveCurrency = (value) => {
 	return {
 		type: SET_ACTIVE_CURRENCY,
 		value
+	}
+}
+
+export const navHandleChange = (id) => {
+	return {
+		type: NAV_HANDLE_CHANGE,
+		id
+	}
+}
+
+export function getA11yProps(index) {
+	return {
+		type: PROFILE_TABS,
+		id: `simple-tab-${index}`,
+		'aria-controls': `simple-tabpanel-${index}`,
+	};
+}
+
+export const tabHandleChange = (index) => {
+	return {
+		type: PROFILE_TABS_CHANGE,
+		index
 	}
 }
 

@@ -5,6 +5,7 @@ const SET_MESSAGES = 'novo/dialog/SET_MESSAGES';
 let initialState = {
 	token: getStorageToken() || false,
 	messages: [],
+	newMessages: 2,
 }
 
 const dialogReducer = (state = initialState, action) => {
