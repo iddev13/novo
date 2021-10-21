@@ -1,14 +1,12 @@
-import DoneIcon from '@material-ui/icons/Done';
-import DoneAllIcon from '@material-ui/icons/DoneAll';
-import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
-import InfoIcon from '@material-ui/icons/Info';
-import { Field, reduxForm, reset } from 'redux-form';
+// import DoneIcon from '@material-ui/icons/Done';
+// import DoneAllIcon from '@material-ui/icons/DoneAll';
+// import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
+// import InfoIcon from '@material-ui/icons/Info';
 import './Dialogs.scss';
 import DialogsFormRedux from './DialogsForm';
 
 const Dialogs = ({ messages, ...props }) => {
-	// debugger
-	let dialogsLisst = messages.map(elem => {
+	let dialogsList = messages.map(elem => {
 		return <li className={`dialogs__item dialogs__outgoing`} key={elem._id}>
 			<div className="dialogs__outgoingMessages">
 				<span className="dialogs__text">{elem.message}</span>
@@ -27,23 +25,10 @@ const Dialogs = ({ messages, ...props }) => {
 				<div className="dialogs__companion">Игорь Игорьевич</div>
 			</header>
 			<section className="dialogs__body">
-				<ul className="dialogs__list">
-					{/* <li className={`dialogs__item dialogs__outgoing`}>
-						<div className="dialogs__outgoingMessages">
-							<span className="dialogs__text">
-							</span>
-							<p>
-								<span className="dialogs__itemTime">14:59</span>
-							</p>
-						</div>
-					</li> */}
-					{dialogsLisst}
+				<ul className="dialogs__list">{dialogsList}
 					<li className={`dialogs__item dialogs__incoming`}>
 						<div className="dialogs__incomingMessages">
 							<span className="dialogs__text">Привет, у меня все ок, а у тебя?</span>
-							{/* <div className="dialogs__resIcon">
-								<DoneAllIcon />
-							</div> */}
 							<p>
 								<span className="dialogs__itemTime">15:00</span>
 							</p>

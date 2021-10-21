@@ -7,7 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import { Box, Button, Checkbox, FormControlLabel, FormGroup, TableFooter, withStyles } from '@material-ui/core';
+import { Box, Button, Checkbox, FormControlLabel, FormGroup, withStyles } from '@material-ui/core';
 import { red } from '@material-ui/core/colors';
 import MessagePagination from './MessagePagination';
 

@@ -6,8 +6,8 @@ let mapStateToProps = (state) => {
 	return {
 		token: getAuthToken(state),
 		userId: getAuthUserId(state),
-		login: getAuthLogin(state),
-		logout: getAuthLogout(state),
+		// login: getAuthLogin(state),
+		// logout: getAuthLogout(state),
 		isAuthenticated: getAuthIsAuthenticated(state),
 	}
 }

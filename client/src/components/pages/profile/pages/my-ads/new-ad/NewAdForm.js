@@ -1,5 +1,5 @@
 import { Field, reduxForm, reset } from "redux-form";
-import { field_file, Input, InputFile, renderInput, Textarea } from "../../../../../common/form-controls/form-controls";
+import { Input, InputFile, Textarea } from "../../../../../common/form-controls/form-controls";
 import AddIcon from '@material-ui/icons/Add';
 import { useEffect, useState } from "react";
 
@@ -119,7 +119,7 @@ const NewAdForm = ({ ...props }) => {
 					<div className="newAd__mediaItem">
 						<label
 							htmlFor="newAdMedia1"
-						>{<AddIcon />} {selectedFile && <img src={preview} />}</label>
+						>{<AddIcon />} {selectedFile && <img src={preview} alt="Picture" />}</label>
 						<Field
 							type="file"
 							name="media1"
@@ -149,7 +149,7 @@ const NewAdForm = ({ ...props }) => {
 			<footer className="newAd__footer">
 				<ul>
 					<li>
-						<a href="">Предпросмотр</a>
+						<a href="/">Предпросмотр</a>
 					</li>
 					<li>
 						<button className="link">Создать объявления</button>

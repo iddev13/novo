@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { compose } from "redux";
 import { setCategory } from '../../../redux/reducers/homeFilter-reducer'
 import { allCategoryHelpFunction } from "../../../helpers/SelectHelper";
-import { getNovodbCars, getSelectorValueCountry } from "../../../redux/selectors/filter-selector";
+import { getNovodbCars } from "../../../redux/selectors/filter-selector";
 import { getHomeFilterCurrentCategory, getHomeFilterWeight } from "../../../redux/selectors/homeFilter-selector";
 import Filter from "./Filter";
 
@@ -39,10 +38,7 @@ const FilterWrapper = (props) => {
 	return (
 		<>
 			<Filter
-				// cars={props.cars}
-				// countries={props.countries}
 				buttons={buttons}
-				// setButtons={setButtons}
 				weightCat={weightCat}
 				setWeightCat={setWeightCat}
 				brandCat={brandCat}
@@ -59,7 +55,6 @@ const FilterWrapper = (props) => {
 				setMileage={setMileage}
 				weight={weight}
 				setWeight={setWeight}
-				// currentCategory={props.currentCategory}
 				{...props}
 			/>
 		</>
@@ -69,7 +64,6 @@ const FilterWrapper = (props) => {
 let mapStateToProps = (state) => {
 	return {
 		cars: getNovodbCars(state),
-		countries: getSelectorValueCountry(state),
 		currentCategory: getHomeFilterCurrentCategory(state),
 		filterWeight: getHomeFilterWeight(state),
 	}

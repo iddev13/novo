@@ -7,7 +7,7 @@ import { getAuthIsAuthenticated } from "../../../redux/selectors/auth-selector";
 const TestComponent = ({ token }) => {
 	// debugger
 	const [items, setItems] = useState([])
-	const { loading, request } = useHttp()
+	const { request } = useHttp()
 
 	const fetchItems = useCallback(async () => {
 		try {

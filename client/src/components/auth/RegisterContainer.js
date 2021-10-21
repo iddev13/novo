@@ -7,7 +7,6 @@ import { RegisterTC } from "../../redux/reducers/auth-reducer";
 import { Redirect } from "react-router";
 import { getAuthIsAuthenticated, getAuthLoginText } from "../../redux/selectors/auth-selector";
 import AlertError from "../common/alerts/AlertError";
-import AlertSuccess from "../common/alerts/AlertSuccess";
 
 const RegisterContainerRedux = ({ isAuthenticated, ...props }) => {
 	const { loading, error, request, clearError } = useHttp();

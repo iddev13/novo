@@ -8,9 +8,6 @@ function App({ token, login, logout, userId, isAuthenticated }) {
   // App wrapper animation
   let [active, setActive] = useState(false)
 
-  // auth
-  const isAuth = !!token;
-
   useEffect(() => {
     const appActive = () => {
       setActive(true);

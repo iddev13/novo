@@ -1,6 +1,5 @@
 import { Container } from '@material-ui/core';
 import { useState } from 'react';
-import BreadCrumb from '../../common/bread-crumb/BreadCrumb';
 import './SearchResult.scss';
 import SearchCard from '../../common/cards/search-card/SearchCard';
 import WithPlusSelect from '../../common/selects/with-plus/WithPlusSelect';
@@ -8,13 +7,11 @@ import RangeSlider from './range-slider/RangeSlider';
 import AccordionM from '../../common/accordions/AccordionM';
 import CheckboxM from '../../common/checkboxes/CheckboxM';
 import SearchResultItem from './SearchResultItem';
+import { allCategoryHelpFunction } from '../../../helpers/SelectHelper';
+import BreadCrumbsMU from '../../common/bread-crumbsMU/BreadCrumbsMU';
 
 
 const SearchResult = ({ items, ...props }) => {
-	// debugger
-	const [selectedWeightCat, setSelectedWightCat] = useState(props.weightCat[0]); // Weight select
-
-	const [crumbs, setCrumbs] = useState(['Главная', 'Транспортные средства'])
 
 	// Min Max Price
 	const minPrice = 0;
@@ -22,10 +19,6 @@ const SearchResult = ({ items, ...props }) => {
 	items.forEach(elem => {
 		if (elem.price > maxPrice) maxPrice = elem.price;
 	});
-
-	const selected = (crumb) => {
-		console.log('BreadCrumbs: ', crumb);
-	}
 
 	const itemList = items.map(elem => {
 		return <li className="content-searchResult__card" key={elem.id}>
@@ -44,12 +37,17 @@ const SearchResult = ({ items, ...props }) => {
 			/>
 		</li>
 	})
+	const categoryList = allCategoryHelpFunction(items, 'category')
+	const countryList = allCategoryHelpFunction(items, 'country')
+	const brandsList = allCategoryHelpFunction(items, 'brand').map((elem, index) => {
+		return <CheckboxM checkboxName={elem} key={index} />
+	})
 
 	return (
 		<article className="searchResult">
 			<Container>
 				<header className="searchResult__header">
-					<BreadCrumb crumbs={crumbs} selected={selected} />
+					<BreadCrumbsMU />
 				</header>
 				<section className="searchResult__body">
 					<aside className="searchResult__sidebar">
@@ -60,36 +58,20 @@ const SearchResult = ({ items, ...props }) => {
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Тип транспорта">
-							<AccordionM toggleBtn="arrow" accordionName="Грузовики" >
-
-							</AccordionM>
+							<AccordionM toggleBtn="arrow"
+								categoryList={categoryList}
+								accordionName="Грузоподьемность" />
 						</WithPlusSelect>
-						<WithPlusSelect
-							selected="Производитель">
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
-							<CheckboxM />
+						<WithPlusSelect selected="Производитель">
+							{brandsList}
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Страна
 							местонахождения">
-							<AccordionM toggleBtn="plus" accordionName="Франция; Италия ">
-
-							</AccordionM>
+							<AccordionM
+								toggleBtn="plus"
+								categoryList={countryList}
+								accordionName="Выберите страну" />
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Коробка передач">

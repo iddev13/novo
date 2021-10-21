@@ -15,25 +15,38 @@ const GreenCheckbox = withStyles({
 			fill: '#009661'
 		}
 	},
-	checked: {},
+	checked: {}
 })((props) => <Checkbox color="default" {...props} />);
 
-export default function CheckboxM() {
+// type PropsType = {
+// 	checkboxName: string
+// 	checked: boolean
+// }
+
+const CheckboxM = ({ checkboxName, ...props }) => {
 	const [state, setState] = React.useState({
-		checkedG: true,
+		checkedG: false,
 	});
 
+	//event: React.ChangeEvent<HTMLInputElement>
 	const handleChange = (event) => {
 		setState({ ...state, [event.target.name]: event.target.checked });
 	};
 
 	return (
-		<FormGroup row>
+		<FormGroup row >
 			<FormControlLabel
-				control={<GreenCheckbox checked={state.checkedG} onChange={handleChange} name="checkedG" />}
-				label="Custom color"
+				control={
+					<GreenCheckbox
+						checked={state.checkedG}
+						onChange={handleChange}
+						name="checkedG" />
+				}
+				label={checkboxName}
 				style={{ padding: '0 0 0 10px' }}
 			/>
 		</FormGroup>
 	);
 }
+
+export default CheckboxM
