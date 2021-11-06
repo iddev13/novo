@@ -6,10 +6,9 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Favorites from '../pages/favorites/Favorites';
-import ProfileSetting from '../pages/profile-setting/ProfileSetting';
 import MyAdsContainer from '../pages/my-ads/MyAdsContainer';
 import MessageContainer from '../pages/message/MessageContainer';
-import { SyntheticEvent } from 'react-router/node_modules/@types/react';
+import ProfileSettingContainer from '../pages/profile-setting/ProfileSettingContainer';
 
 type TabPanelType = {
 	children: any
@@ -107,7 +106,7 @@ const ProfileTabs: React.FC<ProfileTabsTypes> = ({ activeTab, messageAmount, get
 				<MessageContainer />
 			</TabPanel>
 			<TabPanel value={activeTab} index={3}>
-				<ProfileSetting />
+				<ProfileSettingContainer />
 			</TabPanel>
 		</div>
 	);

@@ -6,9 +6,21 @@ const LOGOUT = 'novo/auth/LOGOUT';
 const LOGIN_MESSAGE = 'novo/auth/LOGIN_MESSAGE';
 const CLEAR_LOGIN_MESSAGE = 'novo/auth/CLEAR_LOGIN_MESSAGE';
 
-const storageName = 'userData'
+const tokenTime: string = 'tokenTime'
+const storageName: string = 'userData'
+const setLoginTimeValue = (): void => {
+	const date = Math.floor(Date.now() / 1000).toString() // seconds
+	localStorage.setItem('tokenTime', date)
+}
 
-export const getStorageToken = (): any => {
+let tokenTimeValue: number = Number(localStorage.getItem(tokenTime))
+
+if (tokenTimeValue + 3600 < Math.floor(Date.now() / 1000)) {
+	localStorage.removeItem(storageName)
+	localStorage.removeItem(tokenTime)
+}
+
+export const getStorageToken = () => {
 	const data = JSON.parse(localStorage.getItem(storageName) || '{}')
 	if (data && data.token && data.token !== '') {
 		return data.token
@@ -51,42 +63,31 @@ const authReducer = (state = initialState, action: ActionsType) => {
 			return { ...state, isAuthenticated: false }
 		case CLEAR_LOGIN_MESSAGE:
 			return { ...state, isAuthText: '' }
-		// case LOGIN_MESSAGE:
-			// return { ...state, isAuthText: action.text }
 		default: return state;
 	}
 }
 
 export const actionsAuth = {
 	changeAuthLoginText: (text: string) => {
-		return {
-			type: LOGIN_MESSAGE,
-			text
-		}
+		return { type: LOGIN_MESSAGE, text } as const
 	},
 	cleanLoginMessage: () => {
-		return {
-			type: CLEAR_LOGIN_MESSAGE
-		}
+		return { type: CLEAR_LOGIN_MESSAGE } as const
 	},
 	loginAuth: (jwtToken: string, id: number) => {
 		localStorage.setItem(storageName, JSON.stringify({
 			userId: id, token: jwtToken
 		}))
-		return {
-			type: LOGIN,
-			jwtToken
-		}
+		setLoginTimeValue()
+		document.location.reload()
+		return { type: LOGIN, jwtToken } as const
 	},
 	logoutAuth: () => {
 		localStorage.removeItem(storageName)
-		return {
-			type: LOGOUT
-		}
+		localStorage.removeItem(tokenTime)
+		return { type: LOGOUT } as const
 	}
 }
-
-
 
 export const LoginTC = (formData: any, request: any): ThunkAction<Promise<void>, AppStateType, unknown, ActionsType> => {
 	return async (dispatch) => {

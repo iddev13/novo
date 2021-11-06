@@ -2,19 +2,20 @@ import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { allCategoryHelpFunction } from "../../../helpers/SelectHelper";
 import { useHttp } from "../../../hooks/Hooks";
-import { getItemsTC } from "../../../redux/reducers/searchResult-reduser";
+import { actionsSearchResult, getItemsTC } from "../../../redux/reducers/searchResult-reduser";
 import { getNovodbCars } from "../../../redux/selectors/filter-selector";
-import { getItemSearchResult } from "../../../redux/selectors/searchResult-selector";
+import { getItemSearchResult, getSortItemsSearchResult } from "../../../redux/selectors/searchResult-selector";
 import SearchResult from "./SearchResult";
 
 let mapStateToProps = (state) => {
 	return {
 		cars: getNovodbCars(state),
-		items: getItemSearchResult(state)
+		items: getItemSearchResult(state),
+		sortItems: getSortItemsSearchResult(state)
 	}
 }
 
-const SearchResultCont = ({ items, ...props }) => {
+const SearchResultCont = ({ items, sortItems, setSortItem, removeSortItem, removeAllSortItems, ...props }) => {
 	// debugger
 	const [weightCat, setWeightCat] = useState(allCategoryHelpFunction(props.cars, 'weightCat'));
 
@@ -33,13 +34,20 @@ const SearchResultCont = ({ items, ...props }) => {
 			weightCat={weightCat}
 			setWeightCat={setWeightCat}
 			items={items}
+			sortItems={sortItems}
+			setSortItem={setSortItem}
+			removeSortItem={removeSortItem}
+			removeAllSortItems={removeAllSortItems}
 		/>
 	)
 }
 
 
 const SearchResultContainer = connect(mapStateToProps, {
-	getItemsTC
+	getItemsTC,
+	setSortItem: actionsSearchResult.setSortItem,
+	removeSortItem: actionsSearchResult.removeSortItem,
+	removeAllSortItems: actionsSearchResult.removeAllSortItems
 })(SearchResultCont);
 
 export default SearchResultContainer;

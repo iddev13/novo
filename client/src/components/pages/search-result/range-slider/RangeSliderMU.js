@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
 import { styled } from '@material-ui/styles';
@@ -89,31 +89,63 @@ function valuetext(value) {
 	return `${value}`;
 }
 
-export default function RangeSlider() {
+const RangeSlider = ({ prices, ...props }) => {
+	// debugger
 	const classes = useStyles();
-	const [value, setValue] = React.useState([10, 37]);
+	let minMaxPrices = prices
+	const [value, setValue] = React.useState(minMaxPrices);
+	useEffect(() => { setValue(minMaxPrices) }, [minMaxPrices])
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
 	};
+
+	const inputHandleChangeFrom = (newValue) => { setValue([value[0] = newValue, value[1]]) }
+	const inputHandleChangeTo = (newValue) => { setValue([value[0], value[1] = newValue]) }
 
 	return (
 		<div className={classes.root}>
 			<form className={classes.items}>
 				<div className={classes.item}>
 					<label className={classes.label} htmlFor="from">от</label>
-					<input type="text" id="from" placeholder={value[0]} className={classes.itemField} />
+					<input
+						type="text"
+						id="from"
+						placeholder={value[0]}
+						className={classes.itemField}
+						onChange={(event) => { inputHandleChangeFrom(event.target.value) }}
+					/>
 				</div>
 				<span className={classes.hr}></span>
 				<div className={classes.item}>
 					<label className={classes.label} htmlFor="to">до</label>
-					<input type="text" id="to" placeholder={value[1]} className={classes.itemField} />
+					<input
+						type="text"
+						id="to"
+						placeholder={value[1]}
+						className={classes.itemField}
+						onChange={(event) => { inputHandleChangeTo(event.target.value) }}
+					/>
 				</div>
+
 			</form >
 			<div className={classes.sliderWrapper}>
-				<MySlider value={value} onChange={handleChange} valueLabelDisplay="auto" aria-labelledby="range-slider" getAriaValueText={valuetext} color="red" />
+				<MySlider
+					step={1}
+					min={prices[0]}
+					max={prices[1]}
+					value={value}
+					onChange={handleChange}
+					valueLabelDisplay="auto"
+					aria-labelledby="range-slider"
+					getAriaValueText={valuetext} />
+			</div>
+			<div className="toAplly__wrapper">
+				<button className="toAplly">применить</button>
 			</div>
 		</div >
 
 	);
 }
+
+export default RangeSlider;

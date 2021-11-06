@@ -35,12 +35,12 @@
 		align-items: center;
 		max-width: 804px;
 		width: 100%;
-		margin: 0px 0px 32px 0px;
+		margin: 0px 0px 12px 0px;
 	}
 	&__item {
 		@include flex;
 		align-items: center;
-		margin: 0px 32px 0px 0px;
+		margin: 5px 32px 5px 0px;
 	}
 	&__itemCategoty {
 		font-family: "ManropeSemiBold", sans-serif;
@@ -48,6 +48,7 @@
 		line-height: 24px;
 		color: #8b959e;
 		margin: 0px 8px 0px 0px;
+		text-transform: capitalize;
 		& p {
 			color: inherit;
 			width: inherit;
@@ -58,6 +59,7 @@
 		align-items: center;
 		background: rgba(108, 159, 131, 0.1);
 		border-radius: 4px;
+
 		& span {
 			font-family: "ManropeSemiBold", sans-serif;
 			font-size: 14px;
@@ -80,8 +82,6 @@
 	}
 	&__itemVal1 {
 	}
-	&__itemVal2 {
-	}
 	&__itemsClear {
 		font-family: "ManropeSemiBold", sans-serif;
 		font-size: 14px;
@@ -98,5 +98,34 @@
 	}
 	&__card {
 		flex: 0 1 392px;
+	}
+}
+
+.toAplly {
+	display: inline-block;
+	font-family: "ManropeSemiBold", sans-serif;
+	font-size: 14px;
+	color: #333;
+	background: rgb(231, 231, 231);
+	border: 1px solid rgba(0, 128, 0, 0.616);
+	box-shadow: 0px 0px 4px 2px rgba(1, 73, 1, 0.719);
+	border-radius: 5px;
+	padding: 5px 10px;
+	text-transform: capitalize;
+	transition: all 0.3s ease;
+	@media (min-width: 1024px) {
+		&:hover {
+			background: $green;
+			color: #fff;
+			box-shadow: 0px 0px 2px 1px rgba(1, 73, 1, 0.719);
+		}
+		&:active {
+			box-shadow: none;
+		}
+	}
+	&__wrapper {
+		@include flex;
+		justify-content: flex-end;
+		padding: 0px 5px 5px 5px;
 	}
 }

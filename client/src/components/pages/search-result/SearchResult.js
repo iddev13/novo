@@ -1,24 +1,40 @@
+import React, { useEffect } from 'react'
 import { Container } from '@material-ui/core';
-import { useState } from 'react';
-import './SearchResult.scss';
 import SearchCard from '../../common/cards/search-card/SearchCard';
 import WithPlusSelect from '../../common/selects/with-plus/WithPlusSelect';
-import RangeSlider from './range-slider/RangeSlider';
 import AccordionM from '../../common/accordions/AccordionM';
 import CheckboxM from '../../common/checkboxes/CheckboxM';
 import SearchResultItem from './SearchResultItem';
 import { allCategoryHelpFunction } from '../../../helpers/SelectHelper';
 import BreadCrumbsMU from '../../common/bread-crumbsMU/BreadCrumbsMU';
+import CountryComponent from './country/CountryComponent';
+import RangeSliderMU from './range-slider/RangeSliderMU'
+import './SearchResult.scss';
 
+const SearchResult = ({ items, sortItems, setSortItem, removeSortItem, removeAllSortItems, ...props }) => {
+	// debugger
+	const searchResultHandler = (value) => {
+		setSortItem(value);
+	}
 
-const SearchResult = ({ items, ...props }) => {
+	const transmission = ['автомат', 'ручная']
+	const adType = ['частное лицо', 'бизнес']
 
 	// Min Max Price
-	const minPrice = 0;
-	let maxPrice = 0;
-	items.forEach(elem => {
-		if (elem.price > maxPrice) maxPrice = elem.price;
-	});
+	const minMaxPrices = () => {
+		let myArray = []
+		items.forEach(elem => { myArray[myArray.length] = elem.price });
+		let min = Math.min.apply(null, myArray)
+		let max = Math.max.apply(null, myArray)
+		return [min, max]
+	}
+
+	let prices = minMaxPrices()
+	// =================================
+
+	const getCheckboxValue = (selectName, value) => {
+		setSortItem(selectName, value);
+	}
 
 	const itemList = items.map(elem => {
 		return <li className="content-searchResult__card" key={elem.id}>
@@ -38,11 +54,26 @@ const SearchResult = ({ items, ...props }) => {
 		</li>
 	})
 	const categoryList = allCategoryHelpFunction(items, 'category')
-	const countryList = allCategoryHelpFunction(items, 'country')
+	const countries = allCategoryHelpFunction(items, 'country')
 	const brandsList = allCategoryHelpFunction(items, 'brand').map((elem, index) => {
-		return <CheckboxM checkboxName={elem} key={index} />
+		return <CheckboxM checkboxName={elem}
+			selectName="производитель"
+			setSortItem={setSortItem}
+			getCheckboxValue={getCheckboxValue}
+			key={index.toString()} />
 	})
-
+	const transmissionList = transmission.map((elem, index) => {
+		return <CheckboxM checkboxName={elem}
+			selectName="коробка передач"
+			getCheckboxValue={getCheckboxValue}
+			key={index.toString()} />
+	})
+	const adTypeList = adType.map((elem, index) => {
+		return <CheckboxM checkboxName={elem}
+			selectName="тип обьявления"
+			getCheckboxValue={getCheckboxValue}
+			key={index.toString()} />
+	})
 	return (
 		<article className="searchResult">
 			<Container>
@@ -52,36 +83,34 @@ const SearchResult = ({ items, ...props }) => {
 				<section className="searchResult__body">
 					<aside className="searchResult__sidebar">
 						<WithPlusSelect selected="цена">
-							<RangeSlider
-								minPrice={minPrice}
-								maxPrice={maxPrice} />
+							<RangeSliderMU prices={prices} />
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Тип транспорта">
 							<AccordionM toggleBtn="arrow"
 								categoryList={categoryList}
+								setSortItem={setSortItem}
 								accordionName="Грузоподьемность" />
 						</WithPlusSelect>
-						<WithPlusSelect selected="Производитель">
+						<WithPlusSelect
+							selected="Производитель">
 							{brandsList}
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Страна
 							местонахождения">
-							<AccordionM
-								toggleBtn="plus"
-								categoryList={countryList}
-								accordionName="Выберите страну" />
+							<CountryComponent
+								selectName="Страна местонахождения"
+								searchResultHandler={searchResultHandler}
+								countries={countries} />
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Коробка передач">
-							<CheckboxM />
-							<CheckboxM />
+							{transmissionList}
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Тип объявления">
-							<CheckboxM />
-							<CheckboxM />
+							{adTypeList}
 						</WithPlusSelect>
 						<footer className="searchResult__sidebarFooter">
 							<button className="link">применить</button>
@@ -89,9 +118,19 @@ const SearchResult = ({ items, ...props }) => {
 					</aside>
 					<section className="searchResult__content content-searchResult">
 						<div className="content-searchResult__items">
-							<SearchResultItem category="цена" value1="1200" value2="152444" />
-							<SearchResultItem category="цена" value1="1200" value2="152444" />
-							<button className="content-searchResult__itemsClear">Очистить всё</button>
+							{
+								sortItems.map((elem, index) => {
+									return <SearchResultItem category={elem.key1} value1={elem.value1}
+										removeSortItem={removeSortItem}
+										key={index.toString()}
+									/>
+								})
+							}
+
+							<button
+								className="content-searchResult__itemsClear"
+								onClick={removeAllSortItems}
+							>Очистить всё</button>
 						</div>
 						<ul className="content-searchResult__cards">
 							{itemList}

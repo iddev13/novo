@@ -23,8 +23,6 @@ const useStyles = makeStyles({
 });
 
 const ProfileFormEmail = ({ labelFor, ...props }) => {
-	// debugger
-
 	const classes = useStyles();
 
 	return (
@@ -35,7 +33,7 @@ const ProfileFormEmail = ({ labelFor, ...props }) => {
 					htmlFor="profileSettingEmail">
 					{labelFor}</label>
 				<Field
-					name="profileSettingForm"
+					name="changeEmail"
 					type="email"
 					id="profileSettingEmail"
 					component={Input}

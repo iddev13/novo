@@ -45,7 +45,7 @@ const useStyles = makeStyles({
 	}
 });
 
-function AccordionM({ categoryList, toggleBtn, accordionName, ...props }) {
+function AccordionM({ categoryList, toggleBtn, accordionName, setSortItem, ...props }) {
 	// Styles
 	const classes = useStyles();
 	// ============================================
@@ -55,7 +55,8 @@ function AccordionM({ categoryList, toggleBtn, accordionName, ...props }) {
 	//=============================================
 
 	const handleChange = (name) => {
-		console.log(console.log(name));
+		console.log(console.log(accordionName, name));
+		setSortItem(accordionName, name)
 		setSelectedName([...selectedName, name])
 	}
 

@@ -3,7 +3,6 @@ import ProfileSearchContainer from '../../profile-search/ProfileSearchContainer'
 import './Favorites.scss';
 
 const Favorites = () => {
-
 	return (
 		<section className="profileFavorites">
 			<div className="container">

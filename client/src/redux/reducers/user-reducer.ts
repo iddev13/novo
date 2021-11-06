@@ -31,6 +31,12 @@ export type NewAddDataType = {
 	imageSrc: string,
 	description: string,
 }
+export type UserLogin = {
+	login: string | number
+}
+export type UserPassword = {
+	password: string | number
+}
 
 export const pushAdTC = (formData: NewAddDataType, request: any): ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes> => {
 	return async (dispatch) => {
@@ -38,6 +44,17 @@ export const pushAdTC = (formData: NewAddDataType, request: any): ThunkAction<Pr
 		try {
 			const data = await request('/api/item/add', 'POST', { ...formData }, { Authorization: `Bearer ${initialState.token}` });
 			console.log(data);
+		} catch (error) {
+			console.log(error);
+		}
+	}
+}
+
+export const changeUserLogin = (formData: UserLogin, request: any): ThunkAction<Promise<void>, AppStateType, unknown, ActionTypes> => {
+	return async (dispatch) => {
+		try {
+			const data = await request('/api/auth/changelogin', 'PATCH', { ...formData }, { Authorization: `Bearer ${initialState.token}` })
+			console.log('changeUserLogin', data);
 		} catch (error) {
 			console.log(error);
 		}

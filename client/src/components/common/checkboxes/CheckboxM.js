@@ -23,13 +23,15 @@ const GreenCheckbox = withStyles({
 // 	checked: boolean
 // }
 
-const CheckboxM = ({ checkboxName, ...props }) => {
+const CheckboxM = ({ checkboxName, getCheckboxValue, selectName, ...props }) => {
 	const [state, setState] = React.useState({
-		checkedG: false,
+		checkboxName: false,
 	});
 
 	//event: React.ChangeEvent<HTMLInputElement>
 	const handleChange = (event) => {
+		console.log(state);
+		getCheckboxValue(selectName, event.target.value)
 		setState({ ...state, [event.target.name]: event.target.checked });
 	};
 
@@ -40,7 +42,8 @@ const CheckboxM = ({ checkboxName, ...props }) => {
 					<GreenCheckbox
 						checked={state.checkedG}
 						onChange={handleChange}
-						name="checkedG" />
+						name={checkboxName}
+						value={checkboxName} />
 				}
 				label={checkboxName}
 				style={{ padding: '0 0 0 10px' }}

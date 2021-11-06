@@ -10,6 +10,7 @@ import ProfileFormPasswordContainer from './forms/ProfileFormPasswordContainer';
 import ProfileFormEmailContainer from './forms/ProfileFormEmailContainer';
 import ProfileFormInfoContainer from './forms/ProfileFormInfoContainer';
 import './ProfileSetting.scss';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	root: {},
@@ -66,13 +67,17 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const ProfileSetting = () => {
+const ProfileSetting = ({ logoutAuth }) => {
 	const classes = useStyles();
 	return (
 		<section className="profileSetting">
 			<div className="container">
 				<h3 className="profileSetting__profileName">Профиль mail@gmail.com</h3>
-				<div className="profileSetting__profileExit">Выйти из аккаунта</div>
+				<NavLink
+					to="/"
+					className="profileSetting__profileExit"
+					onClick={() => logoutAuth()}
+				>Выйти из аккаунта</NavLink>
 				<div className="profileSetting__accordion">
 					<div className={classes.root}>
 						<Accordion className={classes.accordion}>
