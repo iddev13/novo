@@ -18,21 +18,15 @@ const GreenCheckbox = withStyles({
 	checked: {}
 })((props) => <Checkbox color="default" {...props} />);
 
-// type PropsType = {
-// 	checkboxName: string
-// 	checked: boolean
-// }
-
-const CheckboxM = ({ checkboxName, getCheckboxValue, selectName, ...props }) => {
-	const [state, setState] = React.useState({
-		checkboxName: false,
-	});
-
-	//event: React.ChangeEvent<HTMLInputElement>
+const CheckboxM = ({ checkboxName, setSortItem, removeSortItem, selectName, check, onChangeCheckbox, checkboxCategory, category, ...props }) => {
+	// debugger
 	const handleChange = (event) => {
-		console.log(state);
-		getCheckboxValue(selectName, event.target.value)
-		setState({ ...state, [event.target.name]: event.target.checked });
+		!check
+			? setSortItem(category, selectName, event.target.value)
+			: removeSortItem(category, event.target.value)
+
+		onChangeCheckbox(checkboxCategory, checkboxName)
+		console.log(checkboxCategory, checkboxName);
 	};
 
 	return (
@@ -40,7 +34,7 @@ const CheckboxM = ({ checkboxName, getCheckboxValue, selectName, ...props }) => 
 			<FormControlLabel
 				control={
 					<GreenCheckbox
-						checked={state.checkedG}
+						checked={check}
 						onChange={handleChange}
 						name={checkboxName}
 						value={checkboxName} />

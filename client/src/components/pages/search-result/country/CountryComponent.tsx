@@ -1,16 +1,17 @@
+import React from 'react';
 import './CountryComponent.scss';
 
 type PropsType = {
 	countries: Array<string>
-	searchResultHandler: (value: string) => void
+	searchResultHandler: (categoryName: string, value: string) => void
 	selectName: string
 }
 
 const CountryComponent: React.FC<PropsType> = ({ countries, searchResultHandler, selectName, ...props }) => {
-
+	// debugger
 	const countryList = countries.map((elem, index) => {
 		return <li className="countryComponent__item"
-			onClick={() => { searchResultHandler(elem) }}
+			onClick={() => { searchResultHandler('страна местонахождения', elem) }}
 			key={index.toString()}
 		>
 			{elem}

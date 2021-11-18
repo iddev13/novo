@@ -4,9 +4,16 @@ import { getStorageToken } from "./auth-reducer";
 
 const SET_MESSAGES = 'novo/dialog/SET_MESSAGES';
 
+export type DialogMessageType = {
+	_id: string
+	message: string
+	owner: string
+	date: string
+}
+
 type InitialStateType = {
 	token: () => void | boolean
-	messages: Array<string>,
+	messages: Array<DialogMessageType>,
 	newMessages: number,
 }
 
@@ -30,7 +37,7 @@ const dialogReducer = (state = initialState, action: ActionsType) => {
 }
 
 export const actionsDialog = {
-	dialogSetMessages: (messages: [_id: string, message: string, owner: string, date: string]) => {
+	dialogSetMessages: (messages: Array<DialogMessageType>) => {
 		return {
 			type: SET_MESSAGES,
 			messages

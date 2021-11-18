@@ -1,19 +1,36 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { getAuthIsAuthenticated } from "../../../redux/selectors/auth-selector";
+import Checkbox from '@material-ui/core/Checkbox';
+import { withStyles } from '@material-ui/core/styles';
+import { green } from '@material-ui/core/colors';
+import WithPlusSelect from "../selects/with-plus/WithPlusSelect";
+import { actionsSearchResult } from "../../../redux/reducers/searchResult-reduser";
 
 
-const TestComponent = ({ token }) => {
+const TestComponent = () => {
 	// debugger
-	// const date = Math.floor(Date.now() / 1000 / 60 / 60) // hour
-	const date = Math.floor(Date.now() / 1000) // seconds
-	const hour = 3600
+	const GreenCheckbox = withStyles({
+		root: {
+			color: green[400],
+			'&$checked': {
+				color: green[600],
+			},
+			'& .MuiSvgIcon-root': {
+				fill: '#009661'
+			}
+		},
+		checked: {}
+	})((props) => <Checkbox color="default" {...props} />);
+
 
 	return (
 		<section>
 			<div className="container">
 				<div className="test">
-					Date: {date}
+					TestComponent
+					<WithPlusSelect
+						selected="Производитель">
+					</WithPlusSelect>
 				</div>
 			</div>
 		</section>
@@ -21,11 +38,11 @@ const TestComponent = ({ token }) => {
 }
 
 let mapStateToProps = (state) => {
-	return {
-		token: getAuthIsAuthenticated(state)
-	}
+	return {}
 }
 
-const TestComponentContainer = connect(mapStateToProps, {})(TestComponent)
+const TestComponentContainer = connect(mapStateToProps, {
+	onChangeCheckbox: actionsSearchResult.onChangeCheckbox
+})(TestComponent)
 
 export default TestComponentContainer;

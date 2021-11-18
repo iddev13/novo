@@ -1,6 +1,6 @@
 import { getAuthIsAuthenticated } from '../../../redux/selectors/auth-selector';
 import { actionsAuth } from '../../../redux/reducers/auth-reducer';
-import { actions, HeaderNavType } from '../../../redux/reducers/headerNav-reducer'
+import { actionsHeaderNav, HeaderNavType } from '../../../redux/reducers/headerNav-reducer'
 import UserPopup from './UserPopup';
 import { getHeaderNav } from '../../../redux/selectors/headerNav-selector';
 import { getNewMessagesAmount } from '../../../redux/selectors/dialog-selector';
@@ -29,7 +29,7 @@ let mapStateToProps = (state: AppStateType): PropsTypes => {
 
 const UserPopupContainer = connect(mapStateToProps, {
 	logoutAuth: actionsAuth.logoutAuth,
-	navHandleChange: actions.navHandleChange
+	navHandleChange: actionsHeaderNav.navHandleChange
 })(UserPopup);
 
 export default UserPopupContainer;

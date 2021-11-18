@@ -1,23 +1,23 @@
 import { connect } from "react-redux";
 import { getHeaderNavActiveTab } from "../../../redux/selectors/headerNav-selector";
-import { actions } from '../../../redux/reducers/headerNav-reducer'
+import { actionsHeaderNav } from '../../../redux/reducers/headerNav-reducer'
 import Profile from "./Profile";
 import { getNewMessagesAmount } from "../../../redux/selectors/dialog-selector";
 import { AppStateType } from "../../../redux/store";
 
-type MapStateToProps = {
-	activeTab: number,
+type MapStateToPropsType = {
+	activeTab: number
 	messageAmount: number
 }
-type MapDispatchToProps = {
-	getA11yProps: (index: number) => void,
+type MapDispatchToPropsType = {
+	getA11yProps: (index: number) => void
 	tabHandleChange: (index: number) => void
 }
-type OwnProps = {}
+type OwnPropsType = {}
 
-type PropsType = MapStateToProps & MapDispatchToProps & OwnProps
+type PropsType = MapStateToPropsType & MapDispatchToPropsType & OwnPropsType
 
-let mapStateToProps = (state: AppStateType): MapStateToProps => {
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 	return {
 		activeTab: getHeaderNavActiveTab(state),
 		messageAmount: getNewMessagesAmount(state)
@@ -25,8 +25,8 @@ let mapStateToProps = (state: AppStateType): MapStateToProps => {
 }
 
 const ProfileContainer = connect(mapStateToProps, {
-	getA11yProps: actions.getA11yProps,
-	tabHandleChange: actions.tabHandleChange
+	getA11yProps: actionsHeaderNav.getA11yProps,
+	tabHandleChange: actionsHeaderNav.tabHandleChange
 })(Profile)
 
 export default ProfileContainer;

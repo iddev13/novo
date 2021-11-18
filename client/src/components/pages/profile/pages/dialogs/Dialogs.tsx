@@ -2,11 +2,18 @@
 // import DoneAllIcon from '@material-ui/icons/DoneAll';
 // import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 // import InfoIcon from '@material-ui/icons/Info';
+import React, { FC } from 'react'
+import { DialogMessageType } from '../../../../../redux/reducers/dialog-reducer';
 import './Dialogs.scss';
 import DialogsFormRedux from './DialogsForm';
 
-const Dialogs = ({ messages, ...props }) => {
-	let dialogsList = messages.map(elem => {
+type PropsType = {
+	messages: Array<DialogMessageType>
+	onSubmit: (value: any) => void
+}
+
+const Dialogs: FC<PropsType> = ({ messages, ...props }) => {
+	let dialogsList = messages.map((elem: any) => {
 		return <li className={`dialogs__item dialogs__outgoing`} key={elem._id}>
 			<div className="dialogs__outgoingMessages">
 				<span className="dialogs__text">{elem.message}</span>

@@ -128,7 +128,7 @@ const Filter = (props) => {
 							</div>
 						</div>
 						<footer className="filter__footer footer-filter">
-							<NavLink to="/search-result" className="link footer-filter__link">{`поиск ${props.cars.length}(результатов)`}</NavLink>
+							<NavLink to="/search-result" className="link footer-filter__link">{`поиск ${props.cars.length - 1}(результатов)`}</NavLink>
 						</footer>
 					</article>
 					<aside className="filter-day-offer filter-offer">

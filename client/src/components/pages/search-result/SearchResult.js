@@ -11,10 +11,10 @@ import CountryComponent from './country/CountryComponent';
 import RangeSliderMU from './range-slider/RangeSliderMU'
 import './SearchResult.scss';
 
-const SearchResult = ({ items, sortItems, setSortItem, removeSortItem, removeAllSortItems, ...props }) => {
+const SearchResult = ({ items, removeSortValue, sortItems, setSortItem, removeSortItem, removeAllSortItems, onChangeCheckbox, ...props }) => {
 	// debugger
-	const searchResultHandler = (value) => {
-		setSortItem(value);
+	const searchResultHandler = (selectName, value) => {
+		setSortItem(selectName, value);
 	}
 
 	const transmission = ['автомат', 'ручная']
@@ -31,10 +31,6 @@ const SearchResult = ({ items, sortItems, setSortItem, removeSortItem, removeAll
 
 	let prices = minMaxPrices()
 	// =================================
-
-	const getCheckboxValue = (selectName, value) => {
-		setSortItem(selectName, value);
-	}
 
 	const itemList = items.map(elem => {
 		return <li className="content-searchResult__card" key={elem.id}>
@@ -55,23 +51,32 @@ const SearchResult = ({ items, sortItems, setSortItem, removeSortItem, removeAll
 	})
 	const categoryList = allCategoryHelpFunction(items, 'category')
 	const countries = allCategoryHelpFunction(items, 'country')
-	const brandsList = allCategoryHelpFunction(items, 'brand').map((elem, index) => {
-		return <CheckboxM checkboxName={elem}
+
+	let brandCounter = new Set([])
+	items.forEach(elem => brandCounter.add(elem.brand))
+	// console.log(brandCounter);
+
+	const brandsList = items.map((elem) => {
+		return <CheckboxM
+			checkboxName={elem.brand}
+			category="brand"
 			selectName="производитель"
 			setSortItem={setSortItem}
-			getCheckboxValue={getCheckboxValue}
-			key={index.toString()} />
+			removeSortItem={removeSortItem}
+			check={elem.checked}
+			checkboxCategory="brand"
+			onChangeCheckbox={onChangeCheckbox}
+			key={elem.__id}
+		/>
 	})
 	const transmissionList = transmission.map((elem, index) => {
 		return <CheckboxM checkboxName={elem}
 			selectName="коробка передач"
-			getCheckboxValue={getCheckboxValue}
 			key={index.toString()} />
 	})
 	const adTypeList = adType.map((elem, index) => {
 		return <CheckboxM checkboxName={elem}
 			selectName="тип обьявления"
-			getCheckboxValue={getCheckboxValue}
 			key={index.toString()} />
 	})
 	return (
@@ -87,10 +92,13 @@ const SearchResult = ({ items, sortItems, setSortItem, removeSortItem, removeAll
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Тип транспорта">
-							<AccordionM toggleBtn="arrow"
+							<AccordionM 
+							toggleBtn="arrow"
+								sortItems={sortItems}
 								categoryList={categoryList}
 								setSortItem={setSortItem}
-								accordionName="Грузоподьемность" />
+								accordionName="Грузоподьемность"
+								 />
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Производитель">
@@ -118,15 +126,15 @@ const SearchResult = ({ items, sortItems, setSortItem, removeSortItem, removeAll
 					</aside>
 					<section className="searchResult__content content-searchResult">
 						<div className="content-searchResult__items">
-							{
-								sortItems.map((elem, index) => {
-									return <SearchResultItem category={elem.key1} value1={elem.value1}
-										removeSortItem={removeSortItem}
-										key={index.toString()}
-									/>
-								})
-							}
-
+							{sortItems.map((elem, index) => {
+								return <SearchResultItem
+									category={elem.category}
+									categoryName={elem.key1}
+									value1={elem.value1}
+									removeSortItem={removeSortItem}
+									key={index.toString()}
+								/>
+							})}
 							<button
 								className="content-searchResult__itemsClear"
 								onClick={removeAllSortItems}

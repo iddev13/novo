@@ -15,7 +15,7 @@ let mapStateToProps = (state) => {
 	}
 }
 
-const SearchResultCont = ({ items, sortItems, setSortItem, removeSortItem, removeAllSortItems, ...props }) => {
+const SearchResultCont = ({ items, removeSortValue, sortItems, setSortItem, removeSortItem, removeAllSortItems, onChangeCheckbox, ...props }) => {
 	// debugger
 	const [weightCat, setWeightCat] = useState(allCategoryHelpFunction(props.cars, 'weightCat'));
 
@@ -38,6 +38,8 @@ const SearchResultCont = ({ items, sortItems, setSortItem, removeSortItem, remov
 			setSortItem={setSortItem}
 			removeSortItem={removeSortItem}
 			removeAllSortItems={removeAllSortItems}
+			removeSortValue={removeSortValue}
+			onChangeCheckbox={onChangeCheckbox}
 		/>
 	)
 }
@@ -45,9 +47,11 @@ const SearchResultCont = ({ items, sortItems, setSortItem, removeSortItem, remov
 
 const SearchResultContainer = connect(mapStateToProps, {
 	getItemsTC,
+	removeSortValue: actionsSearchResult.removeSortValue,
 	setSortItem: actionsSearchResult.setSortItem,
 	removeSortItem: actionsSearchResult.removeSortItem,
-	removeAllSortItems: actionsSearchResult.removeAllSortItems
+	removeAllSortItems: actionsSearchResult.removeAllSortItems,
+	onChangeCheckbox: actionsSearchResult.onChangeCheckbox
 })(SearchResultCont);
 
 export default SearchResultContainer;

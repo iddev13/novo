@@ -1,8 +1,9 @@
+import { FC } from 'react'
 import OtherCard from '../../../../common/cards/other-card/OtherCard';
 import ProfileSearchContainer from '../../profile-search/ProfileSearchContainer';
 import './Favorites.scss';
 
-const Favorites = () => {
+const Favorites: FC = () => {
 	return (
 		<section className="profileFavorites">
 			<div className="container">

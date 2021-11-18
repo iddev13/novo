@@ -45,7 +45,8 @@ const useStyles = makeStyles({
 	}
 });
 
-function AccordionM({ categoryList, toggleBtn, accordionName, setSortItem, ...props }) {
+function AccordionM({ sortItems, categoryList, toggleBtn, accordionName, setSortItem, ...props }) {
+	// debugger
 	// Styles
 	const classes = useStyles();
 	// ============================================
@@ -55,9 +56,16 @@ function AccordionM({ categoryList, toggleBtn, accordionName, setSortItem, ...pr
 	//=============================================
 
 	const handleChange = (name) => {
-		console.log(console.log(accordionName, name));
-		setSortItem(accordionName, name)
-		setSelectedName([...selectedName, name])
+
+		sortItems.forEach(elem => {
+			if (!Object.keys(elem).includes(accordionName)) {
+				console.log(elem);
+				setSortItem(null, accordionName, name)
+				setSelectedName([...selectedName, name])
+				return
+			}
+		})
+
 	}
 
 	// Get category Items
@@ -73,7 +81,7 @@ function AccordionM({ categoryList, toggleBtn, accordionName, setSortItem, ...pr
 		return <div
 			className={classes.cItems}
 			onClick={() => { handleChange(elem) }}
-			key={index}>
+			key={index.toString()}>
 			{elem}
 		</div>
 	})

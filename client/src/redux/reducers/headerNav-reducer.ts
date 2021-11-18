@@ -46,7 +46,7 @@ let initialState: InitialStateType = {
 	activeTab: 0,
 }
 
-type ActionTypes = InferActionsTypes<typeof actions>
+type ActionTypes = InferActionsTypes<typeof actionsHeaderNav>
 
 const headerNavReducer = (state = initialState, action: ActionTypes) => {
 	switch (action.type) {
@@ -92,7 +92,7 @@ const headerNavReducer = (state = initialState, action: ActionTypes) => {
 }
 
 
-export const actions = {
+export const actionsHeaderNav = {
 	toggleIsActive: (value: boolean) => ({ type: TOGGLE_IS_ACTIVE, value } as const),
 	setActiveLanguage: (value: number) => ({ type: SET_ACTIVE_LANGUAGE, value } as const),
 	setActiveCurrency: (value: number) => ({ type: SET_ACTIVE_CURRENCY, value } as const),
