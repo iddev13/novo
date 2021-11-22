@@ -7,3 +7,7 @@ export const getItemSearchResult = (state: AppStateType) => {
 export const getSortItemsSearchResult = (state: AppStateType) => {
 	return state.searchResult.sortItems
 }
+
+export const getFilterItems = (state: AppStateType) => {
+	return state.searchResult.filterItems
+}

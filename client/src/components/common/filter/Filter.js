@@ -5,7 +5,8 @@ import ReactSelect from 'react-select';
 import './Filter.scss';
 import { NavLink } from 'react-router-dom';
 
-const Filter = (props) => {
+const Filter = ({ filterNames, ...props }) => {
+	console.log('FilterNames: ', filterNames);
 	// debugger
 	const [selectedWeightCat, setSelectedWightCat] = useState(props.weightCat[0]); // Weight select
 	const [selectedCountryCat, setSelectedCountryCat] = useState(props.country[0]); // Country select

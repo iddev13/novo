@@ -1,7 +1,7 @@
 import CloseIcon from '@material-ui/icons/Close';
 import './SearchResult.scss';
 
-const SearchResultItem = ({ category, categoryName, value1, value2 = null, removeSortItem, ...props }) => {
+const SearchResultItem = ({ category, categoryName, value1, value2 = null, removeSortItem, onChangeItemChecked, ...props }) => {
 	// debugger
 	return (
 		<div className="content-searchResult__item">
@@ -14,8 +14,9 @@ const SearchResultItem = ({ category, categoryName, value1, value2 = null, remov
 					value2 && <span className="content-searchResult__itemTo">до {value2}</span>
 				}
 				<button onClick={() => {
-					console.log(category, value1);
+					// console.log(category, value1);
 					removeSortItem(category, value1)
+					onChangeItemChecked(value1, false)
 				}}>
 					<CloseIcon />
 				</button>

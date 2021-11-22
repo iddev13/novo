@@ -10,8 +10,14 @@ import BreadCrumbsMU from '../../common/bread-crumbsMU/BreadCrumbsMU';
 import CountryComponent from './country/CountryComponent';
 import RangeSliderMU from './range-slider/RangeSliderMU'
 import './SearchResult.scss';
+import TestComponentContainer from '../../common/test/TestComponent';
 
-const SearchResult = ({ items, removeSortValue, sortItems, setSortItem, removeSortItem, removeAllSortItems, onChangeCheckbox, ...props }) => {
+const SearchResult = ({
+	items, removeSortValue, sortItems, setSortItem,
+	removeSortItem, removeAllSortItems,
+	itemTypeTypes, itemBrands, setFilterItem, filterItems,
+	onChangeItemChecked,
+	...props }) => {
 	// debugger
 	const searchResultHandler = (selectName, value) => {
 		setSortItem(selectName, value);
@@ -54,19 +60,20 @@ const SearchResult = ({ items, removeSortValue, sortItems, setSortItem, removeSo
 
 	let brandCounter = new Set([])
 	items.forEach(elem => brandCounter.add(elem.brand))
-	// console.log(brandCounter);
 
-	const brandsList = items.map((elem) => {
+	const brandsList = itemBrands.map((elem) => {
 		return <CheckboxM
-			checkboxName={elem.brand}
+			checkboxName={elem.name}
 			category="brand"
 			selectName="производитель"
 			setSortItem={setSortItem}
 			removeSortItem={removeSortItem}
 			check={elem.checked}
 			checkboxCategory="brand"
-			onChangeCheckbox={onChangeCheckbox}
-			key={elem.__id}
+			setFilterItem={setFilterItem}
+			itemBrands={itemBrands}
+			onChangeItemChecked={onChangeItemChecked}
+			key={elem.id}
 		/>
 	})
 	const transmissionList = transmission.map((elem, index) => {
@@ -92,13 +99,13 @@ const SearchResult = ({ items, removeSortValue, sortItems, setSortItem, removeSo
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Тип транспорта">
-							<AccordionM 
-							toggleBtn="arrow"
+							<AccordionM
+								toggleBtn="arrow"
 								sortItems={sortItems}
 								categoryList={categoryList}
 								setSortItem={setSortItem}
 								accordionName="Грузоподьемность"
-								 />
+							/>
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Производитель">
@@ -123,6 +130,7 @@ const SearchResult = ({ items, removeSortValue, sortItems, setSortItem, removeSo
 						<footer className="searchResult__sidebarFooter">
 							<button className="link">применить</button>
 						</footer>
+						<TestComponentContainer />
 					</aside>
 					<section className="searchResult__content content-searchResult">
 						<div className="content-searchResult__items">
@@ -132,6 +140,7 @@ const SearchResult = ({ items, removeSortValue, sortItems, setSortItem, removeSo
 									categoryName={elem.key1}
 									value1={elem.value1}
 									removeSortItem={removeSortItem}
+									onChangeItemChecked={onChangeItemChecked}
 									key={index.toString()}
 								/>
 							})}

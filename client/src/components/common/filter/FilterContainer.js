@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { connect } from "react-redux";
-import { setCategory } from '../../../redux/reducers/homeFilter-reducer'
+import { actionsHomeFilter } from '../../../redux/reducers/homeFilter-reducer'
 import { allCategoryHelpFunction } from "../../../helpers/SelectHelper";
-import { getNovodbCars } from "../../../redux/selectors/filter-selector";
+import { getFilterNames, getNovodbCars } from "../../../redux/selectors/filter-selector";
 import { getHomeFilterCurrentCategory, getHomeFilterWeight } from "../../../redux/selectors/homeFilter-selector";
 import Filter from "./Filter";
 
-const FilterWrapper = (props) => {
+const FilterWrapper = ({ filterNames, ...props }) => {
 
 	// Categogy buttons
 	const [buttons, setButtons] = useState(allCategoryHelpFunction(props.cars, 'category'));
@@ -55,6 +55,7 @@ const FilterWrapper = (props) => {
 				setMileage={setMileage}
 				weight={weight}
 				setWeight={setWeight}
+				filterNames={filterNames}
 				{...props}
 			/>
 		</>
@@ -66,13 +67,14 @@ let mapStateToProps = (state) => {
 		cars: getNovodbCars(state),
 		currentCategory: getHomeFilterCurrentCategory(state),
 		filterWeight: getHomeFilterWeight(state),
+		filterNames: getFilterNames(state)
 	}
 }
 
 
 
 const FilterContainer = connect(mapStateToProps, {
-	setCategory,
+	setCategory: actionsHomeFilter.setCategory,
 })(FilterWrapper);
 
 export default FilterContainer;

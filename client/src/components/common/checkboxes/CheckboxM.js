@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -18,15 +18,20 @@ const GreenCheckbox = withStyles({
 	checked: {}
 })((props) => <Checkbox color="default" {...props} />);
 
-const CheckboxM = ({ checkboxName, setSortItem, removeSortItem, selectName, check, onChangeCheckbox, checkboxCategory, category, ...props }) => {
+const CheckboxM = ({ checkboxName, setSortItem, check, removeSortItem, selectName, checkboxCategory, category, setFilterItem,
+	onChangeItemChecked, ...props }) => {
 	// debugger
-	const handleChange = (event) => {
-		!check
-			? setSortItem(category, selectName, event.target.value)
-			: removeSortItem(category, event.target.value)
 
-		onChangeCheckbox(checkboxCategory, checkboxName)
-		console.log(checkboxCategory, checkboxName);
+	const handleChange = (event) => {
+		onChangeItemChecked(checkboxName, event.target.checked)
+
+		setFilterItem(category, event.currentTarget.value, event.target.checked)
+		if (check) {
+			removeSortItem(category, event.target.value)
+		} else {
+			setSortItem(category, selectName, event.target.value)
+		}
+
 	};
 
 	return (

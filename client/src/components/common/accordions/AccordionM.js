@@ -45,8 +45,10 @@ const useStyles = makeStyles({
 	}
 });
 
-function AccordionM({ sortItems, categoryList, toggleBtn, accordionName, setSortItem, ...props }) {
+function AccordionM({ sortItems, categoryList, toggleBtn, accordionName, setSortItem,
+ ...props }) {
 	// debugger
+	// console.log('filterItems', setFilterItem);
 	// Styles
 	const classes = useStyles();
 	// ============================================
@@ -91,19 +93,10 @@ function AccordionM({ sortItems, categoryList, toggleBtn, accordionName, setSort
 		<div className={classes.root}>
 			<Accordion >
 				<AccordionSummary
-					className={
-						toggleBtn !== 'arrow'
-							? classes.btn
-							: ''
-					}
-					expandIcon={
-						toggleBtn === 'arrow'
-							? < ExpandMoreIcon />
-							: < AddIcon />
-					}
+					className={toggleBtn !== 'arrow' ? classes.btn : ''}
+					expandIcon={toggleBtn === 'arrow' ? < ExpandMoreIcon /> : < AddIcon />}
 					aria-controls="panel1a-content"
-					id="panel1a-header"
-				>
+					id="panel1a-header">
 					<Typography className={classes.heading}>
 						{toggleBtn === 'plus' ? selectedName : accordionName}
 					</Typography>
