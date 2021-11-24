@@ -27,9 +27,9 @@ const CheckboxM = ({ checkboxName, setSortItem, check, removeSortItem, selectNam
 
 		setFilterItem(category, event.currentTarget.value, event.target.checked)
 		if (check) {
-			removeSortItem(category, event.target.value)
+			removeSortItem(category, event.currentTarget.value, event.currentTarget.checked)
 		} else {
-			setSortItem(category, selectName, event.target.value)
+			setSortItem(category, selectName, event.currentTarget.value, event.currentTarget.checked)
 		}
 
 	};

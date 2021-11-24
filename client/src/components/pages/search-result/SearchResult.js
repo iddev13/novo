@@ -10,7 +10,6 @@ import BreadCrumbsMU from '../../common/bread-crumbsMU/BreadCrumbsMU';
 import CountryComponent from './country/CountryComponent';
 import RangeSliderMU from './range-slider/RangeSliderMU'
 import './SearchResult.scss';
-import TestComponentContainer from '../../common/test/TestComponent';
 
 const SearchResult = ({
 	items, removeSortValue, sortItems, setSortItem,
@@ -130,7 +129,6 @@ const SearchResult = ({
 						<footer className="searchResult__sidebarFooter">
 							<button className="link">применить</button>
 						</footer>
-						<TestComponentContainer />
 					</aside>
 					<section className="searchResult__content content-searchResult">
 						<div className="content-searchResult__items">
@@ -144,11 +142,27 @@ const SearchResult = ({
 									key={index.toString()}
 								/>
 							})}
-							<button
-								className="content-searchResult__itemsClear"
-								onClick={removeAllSortItems}
-							>Очистить всё</button>
+
+							{
+								sortItems.length > 0
+									? <button
+										className="content-searchResult__itemsClear"
+										onClick={removeAllSortItems}
+									>Очистить всё</button>
+									: null
+							}
+
+
 						</div>
+						{itemBrands.map(elem => {
+							return <div>
+								{elem.name}-<span>{
+									elem.checked
+										? 'true'
+										: 'false'
+								}</span>
+							</div>
+						})}
 						<ul className="content-searchResult__cards">
 							{itemList}
 						</ul>

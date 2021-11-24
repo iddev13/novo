@@ -11,14 +11,29 @@ const REMOVE_ALL_SORT_ITEMS = 'novo/searchResult/REMOVE_ALL_SORT_ITEMS'
 const SET_FILTER_ITEM = 'novo/searchResult/SET_FILTER_ITEM'
 const GET_FILTER_CATEGORY_NAMES = 'novo/searchResult/GET_FILTER_CATEGORY_NAMES'
 const GET_FILTER_BRAND_NAMES = 'novo/searchResult/GET_FILTER_BRAND_NAMES'
+const ON_CHANGE_CHECKBOX_ITEM_VALUE = 'novo/searchResult/ON_CHANGE_CHECKBOX_ITEM_VALUE'
 
 let dataBaseItems: any = []
+
+type ItemTypeType = {
+	id: number
+	name: string
+	checked: boolean
+}
+
+type ItemBrandType = {
+	id: number
+	name: string
+	checked: boolean
+}
 
 type initialStateType = {
 	token: () => void | Boolean
 	items: Array<{} | null>
 	filterItems: any
 	sortItems: Array<SortItemsType | null>
+	itemType: Array<ItemTypeType>
+	itemBrand: Array<ItemBrandType>
 }
 
 export type SortItemsType = {
@@ -31,13 +46,23 @@ export type SortItemsType = {
 
 
 
+
 let initialState: initialStateType = {
 	token: getStorageToken() || false,
 	items: [],
 	filterItems: [],
 	sortItems: [
-		{ category: "country", key1: "страна", value1: "германия" },
-		{ category: "country", key1: "категория", value1: "япония" },
+		// { category: "country", key1: "страна", value1: "германия" },
+		// { category: "country", key1: "категория", value1: "япония" },
+	],
+	itemType: [
+		{ id: 1, name: 'легковые', checked: false },
+		{ id: 2, name: 'грузовые', checked: false }
+	],
+	itemBrand: [
+		{ id: 1, name: 'bmw', checked: false },
+		{ id: 2, name: 'opel', checked: false },
+		{ id: 3, name: 'nissan', checked: false },
 	]
 }
 
@@ -58,14 +83,14 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 				sortItems: newS
 			}
 		case SET_SORT_ITEM:
-			let newSortItem = { category: action.category, key1: action.sortName, value1: action.sortData, checked: true }
+
+			let newSortItem = { category: action.category, key1: action.sortName, value1: action.sortData, checked: action.checked }
 			return {
 				...state,
 				sortItems: [...state.sortItems, newSortItem]
 			}
 		case REMOVE_SORT_ITEMS:
-			console.log('remove_sort_items', action);
-			console.log('remove_sort_items', state.filterItems);
+			// console.log(action);
 
 			let newSortItemsList = state.sortItems.filter((elem: any) => elem.value1 !== action.value)
 			return {
@@ -85,15 +110,22 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 				items: state.items.map((elem: any) => {
 					return { ...elem, checked: false }
 				}),
-				sortItems: []
+				sortItems: [],
+				itemBrand: state.itemBrand.map((elem: any) => {
+					return { ...elem, checked: false }
+				})
 			}
 
 
 		// Sort items ===========================
 		case SET_FILTER_ITEM:
 			let newSortData = dataBaseItems.filter((elem: any) => {
+
+
 				if (action.checked) {
-					if (elem[action.name] === action.category) { return elem }
+					if (elem[action.name] === action.category) {
+						return elem
+					}
 				} else {
 					return elem
 				}
@@ -118,6 +150,24 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 				...state,
 				filterItems: [...state.filterItems, allFilterBrands]
 			}
+		case ON_CHANGE_CHECKBOX_ITEM_VALUE:
+			for (let key of state.sortItems) {
+				// console.log('ON_CHANGE_CHECKBOX_ITEM_VALUE: ', key);
+			}
+
+			let newItemBrand = state.itemBrand.map((elem: any) => {
+				if (elem.checked === false && elem.name === action.name) {
+					return { ...elem, checked: true }
+				}
+				else if (elem.checked === true && elem.name === action.name) {
+					return { ...elem, checked: false }
+				}
+				return elem
+			})
+			return {
+				...state,
+				itemBrand: newItemBrand
+			}
 		default: return state;
 	}
 }
@@ -129,11 +179,11 @@ export const actionsSearchResult = {
 	removeSortValue: (value: string | number) => {
 		return { type: REMOVE_SORT_VALUE, value } as const
 	},
-	setSortItem: (category: string, sortName: string, sortData: string | number) => {
-		return { type: SET_SORT_ITEM, category, sortName, sortData } as const
+	setSortItem: (category: string, sortName: string, sortData: string | number, checked: boolean) => {
+		return { type: SET_SORT_ITEM, category, sortName, sortData, checked } as const
 	},
-	removeSortItem: (category: string, value: string) => {
-		return { type: REMOVE_SORT_ITEMS, category, value } as const
+	removeSortItem: (category: string, value: string, checked: boolean) => {
+		return { type: REMOVE_SORT_ITEMS, category, value, checked } as const
 	},
 	removeAllSortItems: () => {
 		return { type: REMOVE_ALL_SORT_ITEMS } as const
@@ -146,6 +196,11 @@ export const actionsSearchResult = {
 	},
 	setFilterBrandTC: (data: any) => {
 		return { type: GET_FILTER_BRAND_NAMES, data } as const
+	},
+	onChangeItemChecked: (name: string, checked: boolean) => {
+		return {
+			type: ON_CHANGE_CHECKBOX_ITEM_VALUE, name, checked
+		} as const
 	}
 }
 

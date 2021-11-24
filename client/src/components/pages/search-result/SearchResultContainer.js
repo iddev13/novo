@@ -2,10 +2,9 @@ import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { allCategoryHelpFunction } from "../../../helpers/SelectHelper";
 import { useHttp } from "../../../hooks/Hooks";
-import { actionsHomeFilter } from "../../../redux/reducers/homeFilter-reducer";
 import { actionsSearchResult, getItemsTC } from "../../../redux/reducers/searchResult-reduser";
-import { getFilterItemsBrands, getFilterItemsTypes, getNovodbCars } from "../../../redux/selectors/filter-selector";
-import { getFilterItems, getItemSearchResult, getSortItemsSearchResult } from "../../../redux/selectors/searchResult-selector";
+import { getNovodbCars } from "../../../redux/selectors/filter-selector";
+import { getFilterItems, getFilterItemsBrands, getFilterItemsTypes, getItemSearchResult, getSortItemsSearchResult } from "../../../redux/selectors/searchResult-selector";
 import SearchResult from "./SearchResult";
 
 let mapStateToProps = (state) => {
@@ -59,7 +58,7 @@ const SearchResultContainer = connect(mapStateToProps, {
 	removeSortItem: actionsSearchResult.removeSortItem,
 	removeAllSortItems: actionsSearchResult.removeAllSortItems,
 	setFilterItem: actionsSearchResult.setFilterItems,
-	onChangeItemChecked: actionsHomeFilter.onChangeItemChecked
+	onChangeItemChecked: actionsSearchResult.onChangeItemChecked
 })(SearchResultCont);
 
 export default SearchResultContainer;

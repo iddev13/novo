@@ -14,7 +14,6 @@ const SearchResultItem = ({ category, categoryName, value1, value2 = null, remov
 					value2 && <span className="content-searchResult__itemTo">до {value2}</span>
 				}
 				<button onClick={() => {
-					// console.log(category, value1);
 					removeSortItem(category, value1)
 					onChangeItemChecked(value1, false)
 				}}>

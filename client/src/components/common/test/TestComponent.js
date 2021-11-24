@@ -4,9 +4,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { withStyles } from '@material-ui/core/styles';
 import { green } from '@material-ui/core/colors';
 import WithPlusSelect from "../selects/with-plus/WithPlusSelect";
-import { getFilterItemsBrands, getFilterItemsTypes } from "../../../redux/selectors/filter-selector";
 import { actionsSearchResult } from "../../../redux/reducers/searchResult-reduser";
-import { getFilterItems } from "../../../redux/selectors/searchResult-selector";
+import { getFilterItems, getFilterItemsBrands, getFilterItemsTypes } from "../../../redux/selectors/searchResult-selector";
 
 
 const TestComponent = ({ itemTypeTypes, itemBrands, setFilterItem, filterItems, ...props }) => {
@@ -90,7 +89,7 @@ let mapStateToProps = (state) => {
 	return {
 		itemTypeTypes: getFilterItemsTypes(state),
 		itemBrands: getFilterItemsBrands(state),
-		filterItems: getFilterItems(state)
+		filterItems: getFilterItemsTypes(state)
 	}
 }
 

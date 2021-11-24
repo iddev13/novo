@@ -2,7 +2,7 @@ import { useState } from "react";
 import { connect } from "react-redux";
 import { actionsHomeFilter } from '../../../redux/reducers/homeFilter-reducer'
 import { allCategoryHelpFunction } from "../../../helpers/SelectHelper";
-import { getFilterNames, getNovodbCars } from "../../../redux/selectors/filter-selector";
+import { getNovodbCars } from "../../../redux/selectors/filter-selector";
 import { getHomeFilterCurrentCategory, getHomeFilterWeight } from "../../../redux/selectors/homeFilter-selector";
 import Filter from "./Filter";
 
@@ -66,8 +66,7 @@ let mapStateToProps = (state) => {
 	return {
 		cars: getNovodbCars(state),
 		currentCategory: getHomeFilterCurrentCategory(state),
-		filterWeight: getHomeFilterWeight(state),
-		filterNames: getFilterNames(state)
+		filterWeight: getHomeFilterWeight(state)
 	}
 }
 

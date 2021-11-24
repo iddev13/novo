@@ -1,7 +1,4 @@
-import { actionsSearchResult } from './searchResult-reduser';
 import { InferActionsTypes } from "../store";
-
-const ON_CHANGE_CHECKBOX_ITEM_VALUE = 'novo/homeFilter/ON_CHANGE_CHECKBOX_ITEM_VALUE';
 
 type CarsType = {
 	id: Number
@@ -18,32 +15,11 @@ type CarsType = {
 	price: Number
 }
 
-export type FilterNamesType = {
-	name: string
-	value: string | number
-	isActive: boolean
-}
-
-type ItemTypeType = {
-	id: number
-	name: string
-	checked: boolean
-}
-
-type ItemBrandType = {
-	id: number
-	name: string
-	checked: boolean
-}
-
 type initialStateType = {
 	filterCurrentCategory: Number
 	filterWeight: String | null
 	cars: Array<CarsType | null>
-	filterNames: Array<FilterNamesType>
-	itemType: Array<ItemTypeType>
-	itemBrand: Array<ItemBrandType>
-}
+	}
 
 let initialState: initialStateType = {
 	filterCurrentCategory: 0,
@@ -56,59 +32,16 @@ let initialState: initialStateType = {
 		{ id: 5, category: 'сельськое хозяйство', weightCat: 'грузовые', brand: 'other', country: 'other', model: 'some model', weight: 1500, year: 2021, mileage: 1000000, price: 1000, description: 'Cars', owner: 'Owner' },
 		{ id: 6, category: 'строительство', weightCat: 'грузовые', brand: 'other', country: 'other', model: 'some model', weight: 1500, year: 2021, mileage: 1000000, price: 1000, description: 'Cars', owner: 'Owner' },
 		{ id: 7, category: 'погрузочное оборудованиее', weightCat: 'грузовые', brand: 'other', country: 'other', model: 'some model', weight: 1500, year: 2021, mileage: 1000000, price: 1000, description: 'Cars', owner: 'Owner' },
-	],
-	filterNames: [
-		{ name: 'name', value: 'value', isActive: false },
-		{ name: 'грузоподьемность', value: 'легковые', isActive: false },
-		{ name: 'грузоподьемность', value: 'грузовые', isActive: false },
-		{ name: 'марка', value: 'bmw', isActive: false },
-		{ name: 'марка', value: 'opel', isActive: false },
-		{ name: 'марка', value: 'nissan', isActive: false },
-		{ name: 'марка', value: 'mersedes', isActive: false },
-		{ name: 'марка', value: 'другое', isActive: false },
-		{ name: 'марка', value: 'bmw', isActive: false },
-	],
-	itemType: [
-		{ id: 1, name: 'легковые', checked: false },
-		{ id: 2, name: 'грузовые', checked: false }
-	],
-	itemBrand: [
-		{ id: 1, name: 'bmw', checked: false },
-		{ id: 2, name: 'opel', checked: false },
 	]
 }
 
 type ActionsTypes = InferActionsTypes<typeof actionsHomeFilter>
 const homeFilterReducer = (state = initialState, action: ActionsTypes) => {
 	switch (action.type) {
-		case ON_CHANGE_CHECKBOX_ITEM_VALUE:
-			// console.log('ON_CHANGE_CHECKBOX_ITEM_VALUE: ', action);
-			
-
-			let newItemBrand = state.itemBrand.map((elem: any) => {
-				if (elem.checked === false && elem.name === action.name) {
-					// arr.push(action.name)
-					return { ...elem, checked: true }
-				}
-				else if (elem.checked === true && elem.name === action.name) {
-					return { ...elem, checked: false }
-				}
-				return elem
-			})
-			return {
-				...state,
-				itemBrand: newItemBrand
-			}
 		default: return state;
 	}
 }
 
-export const actionsHomeFilter = {
-	onChangeItemChecked: (name: string, checked: boolean) => {
-		return {
-			type: ON_CHANGE_CHECKBOX_ITEM_VALUE, name, checked
-		} as const
-	}
-}
+export const actionsHomeFilter = {}
 
 export default homeFilterReducer;
