@@ -90,19 +90,11 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 				sortItems: [...state.sortItems, newSortItem]
 			}
 		case REMOVE_SORT_ITEMS:
-			// console.log(action);
 
 			let newSortItemsList = state.sortItems.filter((elem: any) => elem.value1 !== action.value)
 			return {
 				...state,
-				sortItems: newSortItemsList,
-				// items: state.items.map((elem: any) => {
-				// 	if (elem.brand === action.value && elem.checked === false) {
-				// 		return { ...elem, checked: false }
-				// 	} else {
-				// 		return { ...elem }
-				// 	}
-				// })
+				sortItems: newSortItemsList
 			}
 		case REMOVE_ALL_SORT_ITEMS:
 			return {
@@ -119,6 +111,8 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 
 		// Sort items ===========================
 		case SET_FILTER_ITEM:
+			console.log(action);
+
 			let a = Object.values(state.itemBrand)
 			let count = 0
 
@@ -132,7 +126,7 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 						count++
 						return elem
 					}
-					if (count === 0) {return elem}
+					if (count === 0) { return elem }
 				}
 			})
 			return {
@@ -140,39 +134,46 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 				items: newSortData
 			}
 		case GET_FILTER_CATEGORY_NAMES:
-			// console.log('GET_FILTER_CATEGORY_NAMES: ', action.data);
 			const allFilterCategories = { category: Array.from(new Set(action.data.map((item: any) => item.category))) }
 			return {
 				...state,
 				filterItems: [...state.filterItems, allFilterCategories]
 			}
 		case GET_FILTER_BRAND_NAMES:
-			// console.log('GET_FILTER_BRAND_NAMES: ', action.data);
 			const allFilterBrands = { brand: Array.from(new Set(action.data.map((item: any) => item.brand))) }
-			// console.log(allFilterBrands);
-
 			return {
 				...state,
 				filterItems: [...state.filterItems, allFilterBrands]
 			}
 		case ON_CHANGE_CHECKBOX_ITEM_VALUE:
-			for (let key of state.sortItems) {
-				// console.log('ON_CHANGE_CHECKBOX_ITEM_VALUE: ', key);
+			const filterFunction = (category: any) => {
+				let newList = category.map((elem: any) => {
+					if (elem.checked === false && elem.name === action.name) {
+						return { ...elem, checked: true }
+					}
+					else if (elem.checked === true && elem.name === action.name) {
+						return { ...elem, checked: false }
+					}
+					return elem
+				})
+				return newList
 			}
 
-			let newItemBrand = state.itemBrand.map((elem: any) => {
-				if (elem.checked === false && elem.name === action.name) {
-					return { ...elem, checked: true }
+			if (action.category === 'brand') {
+				return {
+					...state,
+					itemBrand: filterFunction(state.itemBrand)
 				}
-				else if (elem.checked === true && elem.name === action.name) {
-					return { ...elem, checked: false }
-				}
-				return elem
-			})
-			return {
-				...state,
-				itemBrand: newItemBrand
 			}
+			if (action.category === 'carrying') {
+				return {
+					...state,
+					itemType: filterFunction(state.itemType)
+				}
+			}
+
+			return state
+
 		default: return state;
 	}
 }
@@ -202,9 +203,9 @@ export const actionsSearchResult = {
 	setFilterBrandTC: (data: any) => {
 		return { type: GET_FILTER_BRAND_NAMES, data } as const
 	},
-	onChangeItemChecked: (name: string, checked: boolean) => {
+	onChangeItemChecked: (category: string, name: string, checked: boolean) => {
 		return {
-			type: ON_CHANGE_CHECKBOX_ITEM_VALUE, name, checked
+			type: ON_CHANGE_CHECKBOX_ITEM_VALUE, category, name, checked
 		} as const
 	}
 }

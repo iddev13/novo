@@ -18,12 +18,12 @@ const GreenCheckbox = withStyles({
 	checked: {}
 })((props) => <Checkbox color="default" {...props} />);
 
-const CheckboxM = ({ checkboxName, setSortItem, check, removeSortItem, selectName, checkboxCategory, category, setFilterItem,
+const CheckboxM = ({ checkboxName, setSortItem, check, removeSortItem, selectName, category, setFilterItem,
 	onChangeItemChecked, ...props }) => {
 	// debugger
 
 	const handleChange = (event) => {
-		onChangeItemChecked(checkboxName, event.target.checked)
+		onChangeItemChecked(category, checkboxName, event.target.checked)
 
 		setFilterItem(category, event.currentTarget.value, event.target.checked)
 		if (check) {

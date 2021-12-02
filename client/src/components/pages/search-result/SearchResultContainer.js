@@ -12,7 +12,7 @@ let mapStateToProps = (state) => {
 		cars: getNovodbCars(state),
 		items: getItemSearchResult(state),
 		sortItems: getSortItemsSearchResult(state),
-		itemTypeTypes: getFilterItemsTypes(state),
+		carrying: getFilterItemsTypes(state),
 		itemBrands: getFilterItemsBrands(state),
 		filterItems: getFilterItems(state)
 	}
@@ -20,7 +20,7 @@ let mapStateToProps = (state) => {
 
 const SearchResultCont = ({ items,
 	sortItems, removeSortValue, setSortItem, removeSortItem, removeAllSortItems,
-	itemTypeTypes, itemBrands, filterItems, setFilterItem, onChangeItemChecked,
+	carrying, itemBrands, filterItems, setFilterItem, onChangeItemChecked,
 	...props }) => {
 	// debugger
 	const [weightCat, setWeightCat] = useState(allCategoryHelpFunction(props.cars, 'weightCat'));
@@ -41,7 +41,7 @@ const SearchResultCont = ({ items,
 			removeSortItem={removeSortItem}
 			removeAllSortItems={removeAllSortItems}
 			removeSortValue={removeSortValue}
-			itemTypeTypes={itemTypeTypes}
+			carrying={carrying}
 			itemBrands={itemBrands}
 			filterItems={filterItems}
 			setFilterItem={setFilterItem}

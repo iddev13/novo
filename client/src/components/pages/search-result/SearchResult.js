@@ -14,7 +14,7 @@ import './SearchResult.scss';
 const SearchResult = ({
 	items, removeSortValue, sortItems, setSortItem,
 	removeSortItem, removeAllSortItems,
-	itemTypeTypes, itemBrands, setFilterItem, filterItems,
+	carrying, itemBrands, setFilterItem, filterItems,
 	onChangeItemChecked,
 	...props }) => {
 	// debugger
@@ -57,6 +57,21 @@ const SearchResult = ({
 	const categoryList = allCategoryHelpFunction(items, 'category')
 	const countries = allCategoryHelpFunction(items, 'country')
 
+	const carryingList = carrying.map((elem) => {
+		return <CheckboxM
+			checkboxName={elem.name}
+			category="carrying"
+			selectName="тип транспорта"
+			setSortItem={setSortItem}
+			removeSortItem={removeSortItem}
+			check={elem.checked}
+			setFilterItem={setFilterItem}
+			itemBrands={carrying}
+			onChangeItemChecked={onChangeItemChecked}
+			key={elem.id}
+		/>
+	})
+
 	let brandCounter = new Set([])
 	items.forEach(elem => brandCounter.add(elem.brand))
 
@@ -68,13 +83,13 @@ const SearchResult = ({
 			setSortItem={setSortItem}
 			removeSortItem={removeSortItem}
 			check={elem.checked}
-			checkboxCategory="brand"
 			setFilterItem={setFilterItem}
 			itemBrands={itemBrands}
 			onChangeItemChecked={onChangeItemChecked}
 			key={elem.id}
 		/>
 	})
+
 	const transmissionList = transmission.map((elem, index) => {
 		return <CheckboxM checkboxName={elem}
 			selectName="коробка передач"
@@ -98,13 +113,7 @@ const SearchResult = ({
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Тип транспорта">
-							<AccordionM
-								toggleBtn="arrow"
-								sortItems={sortItems}
-								categoryList={categoryList}
-								setSortItem={setSortItem}
-								accordionName="Грузоподьемность"
-							/>
+							{carryingList}
 						</WithPlusSelect>
 						<WithPlusSelect
 							selected="Производитель">
