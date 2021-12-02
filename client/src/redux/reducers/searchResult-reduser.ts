@@ -119,15 +119,20 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 
 		// Sort items ===========================
 		case SET_FILTER_ITEM:
+			let a = Object.values(state.itemBrand)
+			let count = 0
+
+			a.forEach((elem) => {
+				if (elem.checked) count++
+			})
+
 			let newSortData = dataBaseItems.filter((elem: any) => {
-
-
-				if (action.checked) {
-					if (elem[action.name] === action.category) {
+				for (let key of a) {
+					if (key.checked && elem.brand === key.name) {
+						count++
 						return elem
 					}
-				} else {
-					return elem
+					if (count === 0) {return elem}
 				}
 			})
 			return {
@@ -144,7 +149,7 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 		case GET_FILTER_BRAND_NAMES:
 			// console.log('GET_FILTER_BRAND_NAMES: ', action.data);
 			const allFilterBrands = { brand: Array.from(new Set(action.data.map((item: any) => item.brand))) }
-			console.log(allFilterBrands);
+			// console.log(allFilterBrands);
 
 			return {
 				...state,

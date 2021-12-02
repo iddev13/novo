@@ -5,16 +5,15 @@ import ReactSelect from 'react-select';
 import './Filter.scss';
 import { NavLink } from 'react-router-dom';
 
-const Filter = ({ filterNames, ...props }) => {
-	console.log('FilterNames: ', filterNames);
+const Filter = ({ filterNames, setCategory, ...props }) => {
 	// debugger
-	const [selectedWeightCat, setSelectedWightCat] = useState(props.weightCat[0]); // Weight select
-	const [selectedCountryCat, setSelectedCountryCat] = useState(props.country[0]); // Country select
-	const [selectedBrand, setSelectedBrand] = useState(props.brandCat[0]); // Brand select
-	const [selectedModel, setSelectedModel] = useState(props.model[0]); // Model select
-	const [selectedYear, setSelectedYear] = useState(props.year[0]); // Year select
-	const [selectedPrice, setSelectedPrice] = useState(props.price[0]); // Price select
-	const [selectedMileage, setSelectedMileage] = useState(props.mileage[0]); // Mileage select
+	// const [selectedWeightCat, setSelectedWightCat] = useState(props.weightCat[0]); // Weight select
+	// const [selectedCountryCat, setSelectedCountryCat] = useState(props.country[0]); // Country select
+	// const [selectedBrand, setSelectedBrand] = useState(props.brandCat[0]); // Brand select
+	// const [selectedModel, setSelectedModel] = useState(props.model[0]); // Model select
+	// const [selectedYear, setSelectedYear] = useState(props.year[0]); // Year select
+	// const [selectedPrice, setSelectedPrice] = useState(props.price[0]); // Price select
+	// const [selectedMileage, setSelectedMileage] = useState(props.mileage[0]); // Mileage select
 	// const [selectedWeight, setSelectedWeight] = useState(props.weight[0]); // Weight select
 
 	// React-Select =================================================
@@ -79,7 +78,7 @@ const Filter = ({ filterNames, ...props }) => {
 									>
 										<button
 											className={index === props.currentCategory ? 'active' : ''}
-											onClick={() => { props.setCategory(index) }}
+											onClick={() => { setCategory(index) }}
 										>
 											{elem}
 										</button>
@@ -88,36 +87,71 @@ const Filter = ({ filterNames, ...props }) => {
 							</ul>
 						</header>
 						<div className="filter__body">
-							<div className="filter__body-row">
-								<div className="filter__body-item">
+							<ul className="filter__body-row">
+								<li className="filter__body-item">
 									<label className="filter__label">Категория</label>
-									<Select item={props.weightCat} selected={selectedWeightCat} setSelected={setSelectedWightCat} name="weightCat" />
-								</div>
-								<div className="filter__body-item">
+									<ReactSelect
+										defaultValue={createOptions(props.weightCat)[0]}
+										styles={customStyles}
+										options={createOptions(props.weightCat)}
+										onChange={(event) => { console.log(event.value) }}
+									/>
+								</li>
+								<li className="filter__body-item">
 									<label className="filter__label">Страна</label>
-									<Select item={props.country} selected={selectedCountryCat} setSelected={setSelectedCountryCat} name="country" />
-								</div>
-								<div className="filter__body-item">
+									<ReactSelect
+										defaultValue={createOptions(props.country)[0]}
+										styles={customStyles}
+										options={createOptions(props.country)}
+										onChange={(event) => { console.log(event.value) }}
+									/>
+								</li>
+								<li className="filter__body-item">
 									<label className="filter__label">Марка</label>
-									<Select item={props.brandCat} selected={selectedBrand} setSelected={setSelectedBrand} name="brandCat" />
-								</div>
-								<div className="filter__body-item">
+									<ReactSelect
+										defaultValue={createOptions(props.brandCat)[0]}
+										styles={customStyles}
+										options={createOptions(props.brandCat)}
+										onChange={(event) => { console.log(event.value) }}
+									/>
+								</li>
+								<li className="filter__body-item">
 									<label className="filter__label">Модель</label>
-									<Select item={props.model} selected={selectedModel} setSelected={setSelectedModel} name="model" />
-								</div>
-								<div className="filter__body-item">
+									<ReactSelect
+										defaultValue={createOptions(props.model)[0]}
+										styles={customStyles}
+										options={createOptions(props.model)}
+										onChange={(event) => { console.log(event.value) }}
+									/>
+								</li>
+								<li className="filter__body-item">
 									<label className="filter__label">Год (начиная с)</label>
-									<Select item={props.year} selected={selectedYear} setSelected={setSelectedYear} name="year" />
-								</div>
-								<div className="filter__body-item">
+									<ReactSelect
+										defaultValue={createOptions(props.year)[0]}
+										styles={customStyles}
+										options={createOptions(props.year)}
+										onChange={(event) => { console.log(event.value) }}
+									/>
+								</li>
+								<li className="filter__body-item">
 									<label className="filter__label">цена</label>
-									<Select item={props.price} selected={selectedPrice} setSelected={setSelectedPrice} name="price" />
-								</div>
-								<div className="filter__body-item">
+									<ReactSelect
+										defaultValue={createOptions(props.price)[0]}
+										styles={customStyles}
+										options={createOptions(props.price)}
+										onChange={(event) => { console.log(event.value) }}
+									/>
+								</li>
+								<li className="filter__body-item">
 									<label className="filter__label">Пробег</label>
-									<Select item={props.mileage} selected={selectedMileage} setSelected={setSelectedMileage} name="mileage" />
-								</div>
-								<div className="filter__body-item">
+									<ReactSelect
+										defaultValue={createOptions(props.mileage)[0]}
+										styles={customStyles}
+										options={createOptions(props.mileage)}
+										onChange={(event) => { console.log(event.value) }}
+									/>
+								</li>
+								<li className="filter__body-item">
 									<label className="filter__label">Вес</label>
 									<ReactSelect
 										defaultValue={createOptions(props.weight)[0]}
@@ -125,8 +159,8 @@ const Filter = ({ filterNames, ...props }) => {
 										options={createOptions(props.weight)}
 										onChange={(event) => { console.log(event.value) }}
 									/>
-								</div>
-							</div>
+								</li>
+							</ul>
 						</div>
 						<footer className="filter__footer footer-filter">
 							<NavLink to="/search-result" className="link footer-filter__link">{`поиск ${props.cars.length - 1}(результатов)`}</NavLink>

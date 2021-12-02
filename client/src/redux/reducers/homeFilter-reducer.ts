@@ -1,5 +1,7 @@
 import { InferActionsTypes } from "../store";
 
+const SET_CATEGORY_INDEX = 'novo/homeFilterReducer/SET_CATEGORY_INDEX'
+
 type CarsType = {
 	id: Number
 	category: String
@@ -19,7 +21,7 @@ type initialStateType = {
 	filterCurrentCategory: Number
 	filterWeight: String | null
 	cars: Array<CarsType | null>
-	}
+}
 
 let initialState: initialStateType = {
 	filterCurrentCategory: 0,
@@ -38,10 +40,19 @@ let initialState: initialStateType = {
 type ActionsTypes = InferActionsTypes<typeof actionsHomeFilter>
 const homeFilterReducer = (state = initialState, action: ActionsTypes) => {
 	switch (action.type) {
+		case SET_CATEGORY_INDEX:
+			return {
+				...state,
+				filterCurrentCategory: action.index
+			}
 		default: return state;
 	}
 }
 
-export const actionsHomeFilter = {}
+export const actionsHomeFilter = {
+	setCategory: (index: number) => {
+		return { type: SET_CATEGORY_INDEX, index } as const
+	}
+}
 
 export default homeFilterReducer;
