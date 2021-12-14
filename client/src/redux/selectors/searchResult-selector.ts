@@ -13,9 +13,9 @@ export const getFilterItems = (state: AppStateType) => {
 }
 
 export const getFilterItemsTypes = (state: AppStateType) => {
-	return state.searchResult.itemType
+	return state.searchResult.itemCategories.carrying
 }
 
 export const getFilterItemsBrands = (state: AppStateType) => {
-	return state.searchResult.itemBrand
+	return state.searchResult.itemCategories.brand
 }

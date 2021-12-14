@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { Container } from '@material-ui/core';
 import SearchCard from '../../common/cards/search-card/SearchCard';
 import WithPlusSelect from '../../common/selects/with-plus/WithPlusSelect';
-import AccordionM from '../../common/accordions/AccordionM';
 import CheckboxM from '../../common/checkboxes/CheckboxM';
 import SearchResultItem from './SearchResultItem';
 import { allCategoryHelpFunction } from '../../../helpers/SelectHelper';
@@ -66,7 +65,6 @@ const SearchResult = ({
 			removeSortItem={removeSortItem}
 			check={elem.checked}
 			setFilterItem={setFilterItem}
-			itemBrands={carrying}
 			onChangeItemChecked={onChangeItemChecked}
 			key={elem.id}
 		/>
@@ -84,7 +82,6 @@ const SearchResult = ({
 			removeSortItem={removeSortItem}
 			check={elem.checked}
 			setFilterItem={setFilterItem}
-			itemBrands={itemBrands}
 			onChangeItemChecked={onChangeItemChecked}
 			key={elem.id}
 		/>

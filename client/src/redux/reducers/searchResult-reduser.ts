@@ -27,13 +27,21 @@ type ItemBrandType = {
 	checked: boolean
 }
 
+type DisabledObjType = {
+	name: string
+}
+
 type initialStateType = {
 	token: () => void | Boolean
 	items: Array<{} | null>
 	filterItems: any
 	sortItems: Array<SortItemsType | null>
-	itemType: Array<ItemTypeType>
-	itemBrand: Array<ItemBrandType>
+	itemCategories: {
+		carrying: Array<ItemTypeType>
+		brand: Array<ItemBrandType>
+	}
+	// itemType: Array<ItemTypeType>
+	// itemBrand: Array<ItemBrandType>
 }
 
 export type SortItemsType = {
@@ -55,15 +63,26 @@ let initialState: initialStateType = {
 		// { category: "country", key1: "страна", value1: "германия" },
 		// { category: "country", key1: "категория", value1: "япония" },
 	],
-	itemType: [
-		{ id: 1, name: 'легковые', checked: false },
-		{ id: 2, name: 'грузовые', checked: false }
-	],
-	itemBrand: [
-		{ id: 1, name: 'bmw', checked: false },
-		{ id: 2, name: 'opel', checked: false },
-		{ id: 3, name: 'nissan', checked: false },
-	]
+	itemCategories: {
+		carrying: [
+			{ id: 1, name: 'легковые', checked: false },
+			{ id: 2, name: 'грузовые', checked: false }
+		],
+		brand: [
+			{ id: 1, name: 'bmw', checked: false },
+			{ id: 2, name: 'opel', checked: false },
+			{ id: 3, name: 'nissan', checked: false },
+		]
+	}
+	// itemType: [
+	// 	{ id: 1, name: 'легковые', checked: false },
+	// 	{ id: 2, name: 'грузовые', checked: false }
+	// ],
+	// itemBrand: [
+	// 	{ id: 1, name: 'bmw', checked: false },
+	// 	{ id: 2, name: 'opel', checked: false },
+	// 	{ id: 3, name: 'nissan', checked: false },
+	// ]
 }
 
 type ActionsTypes = InferActionsTypes<typeof actionsSearchResult>
@@ -103,7 +122,7 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 					return { ...elem, checked: false }
 				}),
 				sortItems: [],
-				itemBrand: state.itemBrand.map((elem: any) => {
+				itemBrand: state.itemCategories.brand.map((elem: any) => {
 					return { ...elem, checked: false }
 				})
 			}
@@ -111,28 +130,53 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 
 		// Sort items ===========================
 		case SET_FILTER_ITEM:
-			console.log(action);
 
-			let a = Object.values(state.itemBrand)
-			let count = 0
+			if (action.name === 'carrying') {
 
-			a.forEach((elem) => {
-				if (elem.checked) count++
-			})
+				let a = Object.values(state.itemCategories.carrying)
+				let count = 0
 
-			let newSortData = dataBaseItems.filter((elem: any) => {
-				for (let key of a) {
-					if (key.checked && elem.brand === key.name) {
-						count++
-						return elem
+				a.forEach((elem: any) => {
+					if (elem.checked) count++
+				})
+
+				let newSortData = dataBaseItems.filter((elem: any) => {
+					for (let key of a) {
+						if (key.checked && elem.category === key.name) {
+							count++
+							return elem
+						}
+						if (count === 0) { return elem }
 					}
-					if (count === 0) { return elem }
+				})
+				return {
+					...state,
+					items: newSortData
 				}
-			})
-			return {
-				...state,
-				items: newSortData
 			}
+
+			if (action.name === 'brand') {
+				let a = Object.values(state.itemCategories.brand)
+				let count = 0
+
+				a.forEach((elem) => {
+					if (elem.checked) count++
+				})
+
+				let newSortData = dataBaseItems.filter((elem: any) => {
+					for (let key of a) {
+						if (key.checked && elem.brand === key.name) {
+							count++
+							return elem
+						}
+						if (count === 0) { return elem }
+					}
+				})
+				return { ...state, items: newSortData }
+			}
+
+
+			return { ...state }
 		case GET_FILTER_CATEGORY_NAMES:
 			const allFilterCategories = { category: Array.from(new Set(action.data.map((item: any) => item.category))) }
 			return {
@@ -146,8 +190,13 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 				filterItems: [...state.filterItems, allFilterBrands]
 			}
 		case ON_CHANGE_CHECKBOX_ITEM_VALUE:
-			const filterFunction = (category: any) => {
-				let newList = category.map((elem: any) => {
+			let newObj: any = {}
+			let count = 0
+
+			for (let key in state.itemCategories) {
+				let categoriesItem = Object.values(state.itemCategories)[count]
+
+				let newItems = categoriesItem.map((elem: any) => {
 					if (elem.checked === false && elem.name === action.name) {
 						return { ...elem, checked: true }
 					}
@@ -156,24 +205,15 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 					}
 					return elem
 				})
-				return newList
+
+				newObj[key] = newItems
+				count++
 			}
 
-			if (action.category === 'brand') {
-				return {
-					...state,
-					itemBrand: filterFunction(state.itemBrand)
-				}
+			return {
+				...state,
+				itemCategories: newObj
 			}
-			if (action.category === 'carrying') {
-				return {
-					...state,
-					itemType: filterFunction(state.itemType)
-				}
-			}
-
-			return state
-
 		default: return state;
 	}
 }

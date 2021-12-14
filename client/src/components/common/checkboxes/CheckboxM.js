@@ -39,6 +39,7 @@ const CheckboxM = ({ checkboxName, setSortItem, check, removeSortItem, selectNam
 			<FormControlLabel
 				control={
 					<GreenCheckbox
+						// disabled={true}
 						checked={check}
 						onChange={handleChange}
 						name={checkboxName}
