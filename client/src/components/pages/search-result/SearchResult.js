@@ -53,7 +53,6 @@ const SearchResult = ({
 			/>
 		</li>
 	})
-	const categoryList = allCategoryHelpFunction(items, 'category')
 	const countries = allCategoryHelpFunction(items, 'country')
 
 	const carryingList = carrying.map((elem) => {
@@ -145,6 +144,7 @@ const SearchResult = ({
 									value1={elem.value1}
 									removeSortItem={removeSortItem}
 									onChangeItemChecked={onChangeItemChecked}
+									setFilterItem={setFilterItem}
 									key={index.toString()}
 								/>
 							})}
@@ -160,15 +160,6 @@ const SearchResult = ({
 
 
 						</div>
-						{itemBrands.map(elem => {
-							return <div>
-								{elem.name}-<span>{
-									elem.checked
-										? 'true'
-										: 'false'
-								}</span>
-							</div>
-						})}
 						<ul className="content-searchResult__cards">
 							{itemList}
 						</ul>

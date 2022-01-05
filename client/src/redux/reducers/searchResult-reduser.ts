@@ -74,15 +74,6 @@ let initialState: initialStateType = {
 			{ id: 3, name: 'nissan', checked: false },
 		]
 	}
-	// itemType: [
-	// 	{ id: 1, name: 'легковые', checked: false },
-	// 	{ id: 2, name: 'грузовые', checked: false }
-	// ],
-	// itemBrand: [
-	// 	{ id: 1, name: 'bmw', checked: false },
-	// 	{ id: 2, name: 'opel', checked: false },
-	// 	{ id: 3, name: 'nissan', checked: false },
-	// ]
 }
 
 type ActionsTypes = InferActionsTypes<typeof actionsSearchResult>
@@ -102,18 +93,41 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 				sortItems: newS
 			}
 		case SET_SORT_ITEM:
-
 			let newSortItem = { category: action.category, key1: action.sortName, value1: action.sortData, checked: action.checked }
 			return {
 				...state,
 				sortItems: [...state.sortItems, newSortItem]
 			}
 		case REMOVE_SORT_ITEMS:
+			console.log(dataBaseItems);
+			let obj: any = {}
+			let countt = 0
+
+			for (let key in state.itemCategories) {
+
+				let categoriesItem = Object.values(state.itemCategories)[countt]
+
+				let newItems = categoriesItem.map((elem: any) => {
+					// console.log(elem);
+					if (elem.checked === true && elem.name === action.value) {
+						return { ...elem, checked: false }
+					}
+					// else if (elem.checked === false && elem.name === action.value) {
+					// 	return { ...elem, checked: true }
+					// }
+					return elem
+				})
+
+				obj[key] = newItems
+				countt++
+			}
+
 
 			let newSortItemsList = state.sortItems.filter((elem: any) => elem.value1 !== action.value)
 			return {
 				...state,
-				sortItems: newSortItemsList
+				sortItems: newSortItemsList,
+				itemCategories: obj
 			}
 		case REMOVE_ALL_SORT_ITEMS:
 			return {
@@ -127,52 +141,33 @@ const searchResultReducer = (state = initialState, action: ActionsTypes) => {
 				})
 			}
 
-
 		// Sort items ===========================
 		case SET_FILTER_ITEM:
-
-			if (action.name === 'carrying') {
-
-				let a = Object.values(state.itemCategories.carrying)
+			const filterFunc = (category: Array<ItemTypeType>, elemCategory: string) => {
+				let a = Object.values(category)
 				let count = 0
 
-				a.forEach((elem: any) => {
-					if (elem.checked) count++
-				})
+				a.forEach((elem: any) => { if (elem.checked) count++ })
 
-				let newSortData = dataBaseItems.filter((elem: any) => {
+				return dataBaseItems.filter((elem: any) => {
 					for (let key of a) {
-						if (key.checked && elem.category === key.name) {
+						if (key.checked && elem[elemCategory] === key.name) {
 							count++
 							return elem
 						}
-						if (count === 0) { return elem }
-					}
-				})
+						if (count === 0)  return elem 
+					}})
+			}
+
+			if (action.name === 'carrying') {
 				return {
 					...state,
-					items: newSortData
+					items: filterFunc(state.itemCategories.carrying, 'category')
 				}
 			}
 
 			if (action.name === 'brand') {
-				let a = Object.values(state.itemCategories.brand)
-				let count = 0
-
-				a.forEach((elem) => {
-					if (elem.checked) count++
-				})
-
-				let newSortData = dataBaseItems.filter((elem: any) => {
-					for (let key of a) {
-						if (key.checked && elem.brand === key.name) {
-							count++
-							return elem
-						}
-						if (count === 0) { return elem }
-					}
-				})
-				return { ...state, items: newSortData }
+				return { ...state, items: filterFunc(state.itemCategories.brand, 'brand') }
 			}
 
 
